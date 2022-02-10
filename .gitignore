@@ -2,7 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+/apps/**/migrations
+/ut3/settings.py
+/static_new
 # C extensions
 *.so
 
