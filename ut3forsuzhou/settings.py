@@ -77,10 +77,16 @@ WSGI_APPLICATION = 'ut3forsuzhou.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ut3suzhou',
+        'HOST': '127.0.0.1',
+        'USER': 'sfd',
+        'PASSWORD': 'suifengdou963',
+        'PORT': 3306,
+        'OPTIONS': {'charset': 'utf8mb4'}
     }
 }
+
 
 
 # Password validation
