@@ -16,8 +16,8 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    create_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
-    update_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     last_login = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
 
     class Meta:
@@ -36,41 +36,42 @@ class UserSerializer(serializers.ModelSerializer):
         return ret
 
     def get_company(self, instance):
-        data = {
-            "id": instance.company.id,
-            "name": instance.company.name
-        }
-        return data
+        try:
+            ret = {
+                "id": instance.company.id,
+                "name": instance.company.name,
+            }
+        except:
+            ret = {"id": -1, "name": "显示错误"}
+        return ret
 
     def get_department(self, instance):
-        data = {
-            "id": instance.department.id,
-            "name": instance.department.name
-        }
-        return data
+        try:
+            ret = {
+                "id": instance.department.id,
+                "name": instance.department.name,
+            }
+        except:
+            ret = {"id": -1, "name": "显示错误"}
+        return ret
 
-    def get_platform(self, instance):
-        data = {
-            "id": instance.platform.id,
-            "name": instance.platform.name
-        }
-        return data
+    def get_jobrole(self, instance):
+        try:
+            ret = {
+                "id": instance.jobrole.id,
+                "name": instance.jobrole.name,
+            }
+        except:
+            ret = {"id": -1, "name": "显示错误"}
+        return ret
 
     def to_representation(self, instance):
             ret = super(UserSerializer, self).to_representation(instance)
             ret["password"] = '*****'
-            try:
-                ret["groups"] = self.get_groups(instance)
-                ret["company"] = self.get_company(instance)
-                ret["department"] = self.get_department(instance)
-                ret["platform"] = self.get_platform(instance)
-            except:
-                fields = ["company", "department", "platform"]
-                for key in fields:
-                    ret[key] = {
-                        "id": -1,
-                        "name": "未设置"
-                    }
+            ret["groups"] = self.get_groups(instance)
+            ret["company"] = self.get_company(instance)
+            ret["department"] = self.get_department(instance)
+            ret["jobrole"] = self.get_platform(instance)
             return ret
 
     def create(self, validated_data):
@@ -87,7 +88,7 @@ class UserSerializer(serializers.ModelSerializer):
         groups_list = validated_data.pop("groups", [])
         user_permissions = validated_data.pop("user_permissions", [])
         password = validated_data.pop("password", "")
-        create_time = validated_data.pop("create_time", "")
+        created_time = validated_data.pop("created_time", "")
         update_tim = validated_data.pop("update_tim", "")
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         instance.groups.set(groups_list)

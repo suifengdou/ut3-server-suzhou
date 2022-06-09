@@ -27,7 +27,7 @@ class WarehouseViewset(viewsets.ModelViewSet):
     serializer_class = WarehouseSerializer
     filter_class = WarehouseFilter
     filter_fields = ("name", "warehouse_id", "city", "receiver", "mobile",
-                     "address", "category", "order_status", "create_time", "update_time", "is_delete", "creator")
+                     "address", "category", "order_status", "created_time", "updated_time", "is_delete", "creator")
     permission_classes = (IsAuthenticated, Permissions)
     extra_perm_map = {
         "GET": ['warehouse.view_warehouse']
@@ -52,7 +52,7 @@ class WarehouseTypeViewset(viewsets.ModelViewSet):
     queryset = WarehouseType.objects.all().order_by("id")
     serializer_class = WarehouseTypeSerializer
     filter_class = WarehouseTypeFilter
-    filter_fields = ("name", "create_time", "update_time", "is_delete", "creator")
+    filter_fields = ("name", "created_time", "updated_time", "is_delete", "creator")
     permission_classes = (IsAuthenticated, Permissions)
     extra_perm_map = {
         "GET": ['warehouse.view_warehouse']

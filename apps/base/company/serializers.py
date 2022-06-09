@@ -2,13 +2,13 @@ import datetime
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.exceptions import ValidationError
-from .models import Company
-from ut3.settings import OSS_CONFIG
+from .models import Company, Contacts
+from ut3forsuzhou.settings import OSS_CONFIG
 
 
 class CompanySerializer(serializers.ModelSerializer):
-    create_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
-    update_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
 
     class Meta:
         model = Company
@@ -64,6 +64,49 @@ class CompanySerializer(serializers.ModelSerializer):
         return self.Meta.model.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        validated_data["update_time"] = datetime.datetime.now()
+        validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
+
+
+class ContactsSerializer(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
+
+    class Meta:
+        model = Contacts
+        fields = "__all__"
+
+    def get_gender(self, instance):
+        GENDER_LIST = {
+            1: "男",
+            2: "女",
+        }
+        try:
+            ret = {
+                "id": instance.gender,
+                "name": GENDER_LIST.get(instance.gender, None)
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def to_representation(self, instance):
+        ret = super(ContactsSerializer, self).to_representation(instance)
+        ret["gender"] = self.get_gender(instance)
+        return ret
+
+    def create(self, validated_data):
+        validated_data["creator"] = self.context["request"].user.username
+        return self.Meta.model.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        return instance
+
+
+

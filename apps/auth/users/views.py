@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import UserSerializer
 from .filters import UserFilter
-from ut3.permissions import Permissions
+from ut3forsuzhou.permissions import Permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -35,11 +35,11 @@ class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("id")
     serializer_class = UserSerializer
     filter_class = UserFilter
-    filter_fields = ("username", "creator", "create_time", "is_staff", "is_active")
-    permission_classes = (IsAuthenticated,)
-    # extra_perm_map = {
-    #     "GET": ['users.view_userprofile']
-    # }
+    filter_fields = "__all__"
+    permission_classes = (IsAuthenticated, Permissions)
+    extra_perm_map = {
+        "GET": ['users.view_userprofile']
+    }
 
     def list(self, request, *args, **kwargs):
         return super(UserViewset, self).list(request, *args, **kwargs)
@@ -56,6 +56,14 @@ class UserViewset(viewsets.ModelViewSet):
         except:
             company = error
         try:
+            jobrole = {
+                "id": user.jobrole.id,
+                "name": user.jobrole.name
+            }
+        except:
+            jobrole = error
+
+        try:
             department = {
                 "id": user.department.id,
                 "name": user.department.name
@@ -69,12 +77,13 @@ class UserViewset(viewsets.ModelViewSet):
             result_permissions = filter(lambda x: "view" in x, user.get_group_permissions())
             roles = list(result_permissions)
         data = {
-             "name": user.username,
+            "name": user.username,
             "roles": roles,
             "avatar": 'http://ut3.xiaogou777.com/avatar.png',
-            "introduction": "UT3用户",
+            "introduction": "UT3forSuzhou用户",
             "company": company,
-            "department": department
+            "department": department,
+            "jobrole": jobrole
         }
         return response.Response(data)
 
