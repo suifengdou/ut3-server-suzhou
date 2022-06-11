@@ -62,7 +62,7 @@ class HandBoardDetails(models.Model):
     creator = models.CharField(null=True, blank=True, max_length=150, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'BOM-手板'
+        verbose_name = 'BOM-手板明细'
         verbose_name_plural = verbose_name
         db_table = 'bom_handboard_details'
 

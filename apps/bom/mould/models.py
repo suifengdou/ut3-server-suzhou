@@ -78,10 +78,10 @@ class MouldVersionDetails(models.Model):
                                       help_text='注塑厂')
 
     class Meta:
-        verbose_name = 'BOM-模具-模具版本'
+        verbose_name = 'BOM-模具-模具版本明细'
         unique_together = (("number", "mould"), )
         verbose_name_plural = verbose_name
-        db_table = 'bom_mould_version'
+        db_table = 'bom_mould_version_details'
 
     def __str__(self):
         return self.name

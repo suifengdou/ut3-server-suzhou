@@ -4,6 +4,7 @@ from apps.auth.users.models import UserProfile
 from apps.bom.parts.models import AtomicPartsVersion
 from apps.bom.bom.models import BOM, BOMVersion
 from apps.bom.units.models import Units
+from apps.project.handboardexecuteproject.models import HandBoardExecuteProject
 
 
 class Payment(models.Model):

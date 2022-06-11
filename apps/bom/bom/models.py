@@ -64,5 +64,5 @@ class BOMVersionDetails(models.Model):
         db_table = 'bom_bom_version_details'
 
     def __str__(self):
-        return self.atomic_parts.name
+        return self.details.name
 
