@@ -45,7 +45,7 @@ class MouldExecuteProject(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='模具执行单名称', help_text='手板执行单名称')
     execute_id = models.CharField(max_length=50, unique=True, verbose_name='模具执行单号', help_text='模具执行单号')
 
-    supplier = models.ForeignKey(MouldSupplier, on_delete=models.CASCADE, verbose_name='供应商', help_text='供应商')
+    supplier = models.ForeignKey(MouldSupplier, on_delete=models.CASCADE, null=True, blank=True, verbose_name='供应商', help_text='供应商')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')
@@ -58,7 +58,7 @@ class MouldExecuteProject(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'PROJECT-手板项目执行单'
+        verbose_name = 'PROJECT-模具项目执行单'
         verbose_name_plural = verbose_name
         db_table = 'project_mould_execute'
 
@@ -71,7 +71,6 @@ class MouldExecuteProjectDetails(models.Model):
     object = models.ForeignKey(MouldExecuteProject, on_delete=models.CASCADE, verbose_name='模具执行单', help_text='模具执行单')
     name = models.ForeignKey(MouldVersion, on_delete=models.CASCADE, verbose_name='模具版本', help_text='模具版本')
     units_id = models.CharField(max_length=50, unique=True, verbose_name='整机编码', help_text='整机编码')
-    initial_parts = models.ForeignKey(InitialParts, on_delete=models.CASCADE, verbose_name='初始物料', help_text='初始物料')
     group_number = models.CharField(null=True, blank=True, max_length=30, verbose_name='组编号', help_text='组编号')
     amount = models.FloatField(default=0, verbose_name='金额', help_text='金额')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
@@ -81,7 +80,7 @@ class MouldExecuteProjectDetails(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'PROJECT-手板项目执行单明细'
+        verbose_name = 'PROJECT-模具项目执行单明细'
         verbose_name_plural = verbose_name
         db_table = 'project_mould_execute_details'
 
@@ -90,15 +89,16 @@ class MouldExecuteProjectDetails(models.Model):
 
 
 class LogMouldExecuteProject(models.Model):
-    object = models.ForeignKey(HandBoardExecuteProject, on_delete=models.CASCADE, verbose_name='对象', help_text='对象')
+    object = models.ForeignKey(MouldExecuteProject, on_delete=models.CASCADE, verbose_name='对象', help_text='对象')
     name = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='操作人', help_text='操作人')
     content = models.CharField(max_length=240, verbose_name='操作内容', help_text='操作内容')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
 
     class Meta:
-        verbose_name = 'PROJECT-手板项目执行单日志'
+        verbose_name = 'PROJECT-模具项目执行单日志'
         verbose_name_plural = verbose_name
-        db_table = 'project_handboard_execute_logging'
+        db_table = 'project_mould_execute_logging'
 
     def __str__(self):
         return self.name
+

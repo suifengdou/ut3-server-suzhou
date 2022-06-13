@@ -5,33 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15a94063-21b7-4641-a55c-42484e566186" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/bom/models.py" afterPath="$PROJECT_DIR$/apps/bom/bom/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/handboard/models.py" afterPath="$PROJECT_DIR$/apps/bom/handboard/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/mould/models.py" afterPath="$PROJECT_DIR$/apps/bom/mould/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/productline/models.py" afterPath="$PROJECT_DIR$/apps/bom/productline/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/mouldproject/models.py" afterPath="$PROJECT_DIR$/apps/project/mouldproject/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/__init__.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/admin.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/admin.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/apps.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/apps.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/filters.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/models.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/router.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/serializers.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/tests.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/tests.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/project/views.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/admin.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/apps.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/filters.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/models.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/router.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/serializers.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/tests.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/subproject/views.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/apps/project/unitsproject/models.py" afterPath="$PROJECT_DIR$/apps/project/unitsproject/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/payment/models.py" afterPath="$PROJECT_DIR$/apps/settle/payment/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/filters.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/apps.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/models.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/router.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/serializers.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/handboard/views.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/apps.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/filters.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/models.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/router.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/serializers.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbexecution/views.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/apps.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/filters.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/models.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/router.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/serializers.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/handboard/hbworkbench/views.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,132 +49,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/bom/parts/models.py">
+      <file leaf-file-name="filters.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/filters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="189">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
               <folding>
-                <element signature="e#184#1052#0" expanded="false" />
-                <element signature="e#1081#3066#0" expanded="false" />
-                <element signature="e#3114#6229#0" expanded="false" />
-                <element signature="e#6272#7140#0" expanded="false" />
-                <element signature="e#7175#9155#0" expanded="false" />
-                <element signature="e#9197#11395#0" expanded="false" />
+                <element signature="e#634#1684#0" expanded="false" />
+                <element signature="e#1764#2828#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/bom/mould/models.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+            <state relative-caret-position="546">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
-                <element signature="e#316#2199#0" expanded="false" />
-                <element signature="e#2241#3515#0" expanded="false" />
-                <element signature="e#3564#4510#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/bom/handboard/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="49" column="37" lean-forward="false" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
-              <folding>
-                <element signature="e#284#1051#0" expanded="false" />
-                <element signature="e#1089#2076#0" expanded="false" />
-                <element signature="e#2122#3432#0" expanded="false" />
-                <element signature="e#3474#4047#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/bom/initialparts/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding>
-                <element signature="e#164#1066#0" expanded="false" />
-                <element signature="e#1108#3310#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/faultlist/faulthandboard/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-              <folding>
-                <element signature="e#451#2996#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/settle/payment/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="6" />
-              <folding>
-                <element signature="e#334#2425#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/project/mouldproject/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1407">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <element signature="e#3536#4123#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/project/handboardexecuteproject/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-              <folding>
-                <element signature="e#525#2579#0" expanded="false" />
-                <element signature="e#2639#3958#0" expanded="false" />
-                <element signature="e#4013#4621#0" expanded="false" />
+                <element signature="e#1031#16945#0" expanded="false" />
+                <element signature="e#17016#32993#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py">
+        <entry file="file://$PROJECT_DIR$/apps/settle/statement/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
-              <folding>
-                <element signature="e#3864#4472#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/bom/material/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="29" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="63">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,9 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/apps/auth/jobrole/router.py" />
-        <option value="$PROJECT_DIR$/apps/auth/jobrole/models.py" />
-        <option value="$PROJECT_DIR$/apps/auth/users/models.py" />
         <option value="$PROJECT_DIR$/apps/auth/groups/router.py" />
         <option value="$PROJECT_DIR$/apps/bom/bom/apps.py" />
         <option value="$PROJECT_DIR$/apps/base/company/serializers.py" />
@@ -247,6 +163,9 @@
         <option value="$PROJECT_DIR$/apps/settle/payment/models.py" />
         <option value="$PROJECT_DIR$/apps/project/mouldproject/models.py" />
         <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/filters.py" />
+        <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/serializers.py" />
+        <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py" />
       </list>
     </option>
   </component>
@@ -257,9 +176,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2680" />
-    <option name="y" value="13" />
-    <option name="width" value="2490" />
+    <option name="x" value="-2286" />
+    <option name="y" value="36" />
+    <option name="width" value="1339" />
     <option name="height" value="1447" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -280,8 +199,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,28 +217,14 @@
               <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
               <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="settle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
               <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-              <item name="handboardexecuteproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-              <item name="mouldexecuteproject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-              <item name="mouldproject" type="462c0819:PsiDirectoryNode" />
+              <item name="settle" type="462c0819:PsiDirectoryNode" />
+              <item name="statement" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -329,23 +234,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ut3-drf" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Git\ut3-server-suzhou\apps\project\project" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\handboard\handboard" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\handboard" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\bom\middleparts" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\bom\bom" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Git\ut3-server-suzhou\apps\project" />
       <recent name="D:\Git\ut3-server-suzhou\apps\settle" />
       <recent name="D:\Git\ut3-server-suzhou\apps\handboard" />
       <recent name="D:\Git\ut3-server-suzhou\apps\supplier\handboardsup" />
       <recent name="D:\Git\ut3-server-suzhou\apps\bom" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Git\ut3-server-suzhou\apps\project\mouldexecuteproject" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\project\project" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\handboard\handboard" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\handboard" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\bom\middleparts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -401,7 +306,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2680" y="13" width="2490" height="1447" extended-state="0" />
+    <frame x="-2286" y="36" width="1339" height="1447" extended-state="0" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -410,9 +315,8 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23744856" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22517592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@ut3-server-suzhou" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259542" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -423,6 +327,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="manage.py@ut3-server-suzhou" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259542" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298279" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -440,34 +345,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/bom/parts/router.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/bom/parts/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/bom/material/router.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/bom/material/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/base/department/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -494,7 +371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -502,7 +378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -510,7 +385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -534,7 +408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1281">
           <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -542,7 +415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -551,9 +423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
           <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-          <folding>
-            <marker date="1652779668870" expanded="true" signature="5077:5193" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -561,15 +430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="20" column="75" lean-forward="false" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/settle/statement/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -577,9 +437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#250#1822#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,10 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding>
-            <element signature="e#290#1170#0" expanded="false" />
-            <element signature="e#1207#3843#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,10 +472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="20" />
-          <folding>
-            <element signature="e#65#1097#0" expanded="false" />
-            <element signature="e#1141#2213#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -667,22 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#453#2352#0" expanded="false" />
-            <element signature="e#2405#3627#0" expanded="false" />
-            <element signature="e#3675#4265#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#392#3813#0" expanded="false" />
-            <element signature="e#3863#4459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -690,10 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#437#2999#0" expanded="false" />
-            <element signature="e#3043#3627#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -701,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="668">
           <caret line="62" column="40" lean-forward="true" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,10 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-          <folding>
-            <element signature="e#218#1290#0" expanded="false" />
-            <element signature="e#1337#3341#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -843,7 +667,7 @@
     <entry file="file://$PROJECT_DIR$/apps/project/handboardexecuteproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
             <element signature="e#525#2579#0" expanded="false" />
             <element signature="e#2639#3958#0" expanded="false" />
@@ -855,20 +679,80 @@
     <entry file="file://$PROJECT_DIR$/apps/project/mouldproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1407">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
             <element signature="e#3536#4123#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+          <folding>
+            <element signature="e#925#16829#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <element signature="e#634#1684#0" expanded="false" />
+            <element signature="e#1764#2828#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="85" column="50" lean-forward="true" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+        <state relative-caret-position="756">
+          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
-            <element signature="e#3864#4472#0" expanded="false" />
+            <element signature="e#512#2459#0" expanded="false" />
+            <element signature="e#3770#4370#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding>
+            <element signature="e#392#3813#0" expanded="false" />
+            <element signature="e#3863#4459#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#1031#16945#0" expanded="false" />
+            <element signature="e#17016#32993#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/settle/statement/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
