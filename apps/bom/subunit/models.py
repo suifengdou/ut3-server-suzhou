@@ -1,6 +1,6 @@
 
 from django.db import models
-
+from apps.auth.users.models import UserProfile
 
 class SubUnit(models.Model):
     CATEGORY_LIST = (
@@ -15,7 +15,7 @@ class SubUnit(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
     is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
-    creator = models.CharField(null=True, blank=True, max_length=150, verbose_name='创建者', help_text='创建者')
+    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
         verbose_name = 'BOM-子项目'
@@ -36,7 +36,7 @@ class SubUnitVersion(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
     is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
-    creator = models.CharField(null=True, blank=True, max_length=150, verbose_name='创建者', help_text='创建者')
+    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
         verbose_name = 'BOM-子项目版本'

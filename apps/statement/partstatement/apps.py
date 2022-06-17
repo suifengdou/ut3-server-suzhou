@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StatementConfig(AppConfig):
+class PartstatementConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.settle.statement'
+    name = 'apps.statement.partstatement'
