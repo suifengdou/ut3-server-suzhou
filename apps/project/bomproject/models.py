@@ -36,6 +36,11 @@ class BOMProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+    CATEGORY_LIST = (
+        (1, '开发构建'),
+        (2, '版本变更'),
+    )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     name = models.CharField(max_length=50, verbose_name='BOM项目', help_text='BOM项目')
     bom_id = models.CharField(max_length=50, verbose_name='BOM编码', help_text='BOM编码')
     units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机版本', help_text='整机版本')

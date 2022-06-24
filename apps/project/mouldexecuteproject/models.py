@@ -42,6 +42,12 @@ class MouldExecuteProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+
+    CATEGORY_LIST = (
+        (1, '开发构建'),
+        (2, '版本变更'),
+    )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     name = models.CharField(max_length=50, unique=True, verbose_name='模具执行单名称', help_text='手板执行单名称')
     execute_id = models.CharField(max_length=50, unique=True, verbose_name='模具执行单号', help_text='模具执行单号')
 

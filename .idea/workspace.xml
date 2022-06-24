@@ -5,40 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15a94063-21b7-4641-a55c-42484e566186" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/project/unitupdate/apps.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/project/unitupdate/models.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/admin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/apps.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/tests.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/views.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/admin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/models.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/tests.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/views.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/admin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/apps.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/models.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/tests.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/statement/partstatement/views.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/admin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/apps.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/models.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/tests.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/mouldupdate/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/apps.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/models.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/unitupdate/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/unitupdate/admin.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/unitupdate/tests.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/apps/update/unitupdate/views.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/mould/models.py" afterPath="$PROJECT_DIR$/apps/bom/mould/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/bom/subunit/models.py" afterPath="$PROJECT_DIR$/apps/bom/subunit/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/project/handboardexecuteproject/models.py" afterPath="$PROJECT_DIR$/apps/project/handboardexecuteproject/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/__init__.py" afterPath="$PROJECT_DIR$/apps/project/unitupdate/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/admin.py" afterPath="$PROJECT_DIR$/apps/project/unitupdate/admin.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/apps.py" afterPath="$PROJECT_DIR$/apps/statement/mouldstatement/apps.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/models.py" afterPath="$PROJECT_DIR$/apps/statement/handboardstatement/models.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/tests.py" afterPath="$PROJECT_DIR$/apps/project/unitupdate/tests.py" />
-      <change beforePath="$PROJECT_DIR$/apps/settle/statement/views.py" afterPath="$PROJECT_DIR$/apps/project/unitupdate/views.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/bomproject/models.py" afterPath="$PROJECT_DIR$/apps/project/bomproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/cbomproject/models.py" afterPath="$PROJECT_DIR$/apps/project/cbomproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/componentproject/models.py" afterPath="$PROJECT_DIR$/apps/project/componentproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/middlepartsproject/models.py" afterPath="$PROJECT_DIR$/apps/project/middlepartsproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" afterPath="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/mouldproject/models.py" afterPath="$PROJECT_DIR$/apps/project/mouldproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/partsproject/models.py" afterPath="$PROJECT_DIR$/apps/project/partsproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/subunitproject/models.py" afterPath="$PROJECT_DIR$/apps/project/subunitproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitsproject/models.py" afterPath="$PROJECT_DIR$/apps/project/unitsproject/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/__init__.py" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/__init__.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/admin.py" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/admin.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/apps.py" afterPath="$PROJECT_DIR$/apps/update/unitupdate/apps.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/models.py" afterPath="$PROJECT_DIR$/apps/update/unitupdate/models.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/tests.py" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/tests.py" />
+      <change beforePath="$PROJECT_DIR$/apps/project/unitupdate/views.py" afterPath="$PROJECT_DIR$/apps/update/cbomupdate/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,11 +40,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/project/unitupdate/models.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/unitsproject/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+            <state relative-caret-position="525">
+              <caret line="115" column="19" lean-forward="false" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/subunitproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="609">
+              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="48" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/partsproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+              <folding>
+                <element signature="e#437#3000#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/mouldproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/componentproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="45" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/project/cbomproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="46" selection-end-column="108" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/project/bomproject/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/update/mouldupdate/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,6 +154,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>logging</find>
+      <find>CATEGORY_LIST</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -82,12 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/apps/supplier/mouldsup/filters.py" />
-        <option value="$PROJECT_DIR$/apps/supplier/logisticssup/filters.py" />
-        <option value="$PROJECT_DIR$/apps/supplier/handboardsup/filters.py" />
-        <option value="$PROJECT_DIR$/apps/supplier/handboardsup/views.py" />
-        <option value="$PROJECT_DIR$/apps/supplier/logisticssup/views.py" />
-        <option value="$PROJECT_DIR$/apps/supplier/mouldsup/views.py" />
         <option value="$PROJECT_DIR$/apps/supplier/packsup/views.py" />
         <option value="$PROJECT_DIR$/apps/supplier/mouldsup/models.py" />
         <option value="$PROJECT_DIR$/apps/supplier/packsup/models.py" />
@@ -105,12 +180,9 @@
         <option value="$PROJECT_DIR$/apps/handboard/handboard/serializers.py" />
         <option value="$PROJECT_DIR$/apps/handboard/hbexecution/models.py" />
         <option value="$PROJECT_DIR$/apps/handboard/handboard/models.py" />
-        <option value="$PROJECT_DIR$/apps/project/unitsproject/models.py" />
         <option value="$PROJECT_DIR$/apps/bom/productline/models.py" />
         <option value="$PROJECT_DIR$/apps/bom/bom/models.py" />
         <option value="$PROJECT_DIR$/apps/bom/handboard/models.py" />
-        <option value="$PROJECT_DIR$/apps/project/mouldproject/models.py" />
-        <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
         <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/filters.py" />
         <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/serializers.py" />
         <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/views.py" />
@@ -131,8 +203,17 @@
         <option value="$PROJECT_DIR$/apps/update/partsupdate/models.py" />
         <option value="$PROJECT_DIR$/apps/update/subunitupdate/models.py" />
         <option value="$PROJECT_DIR$/apps/settle/payment/models.py" />
-        <option value="$PROJECT_DIR$/apps/update/unitupdate/models.py" />
         <option value="$PROJECT_DIR$/apps/project/unitupdate/models.py" />
+        <option value="$PROJECT_DIR$/apps/update/unitupdate/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/unitsproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/subunitproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/partsproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/mouldproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/middlepartsproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/componentproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/cbomproject/models.py" />
+        <option value="$PROJECT_DIR$/apps/project/bomproject/models.py" />
       </list>
     </option>
   </component>
@@ -143,9 +224,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-2782" />
+    <option name="x" value="-2730" />
     <option name="width" value="1892" />
-    <option name="height" value="1447" />
+    <option name="height" value="1448" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -166,6 +247,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,7 +271,76 @@
               <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
               <item name="project" type="462c0819:PsiDirectoryNode" />
-              <item name="unitupdate" type="462c0819:PsiDirectoryNode" />
+              <item name="bomproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="cbomproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="componentproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="initialpartproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="middlepartsproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="mouldexecuteproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="mouldproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="partsproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="subunitproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+              <item name="unitsproject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ut3-server-suzhou" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="supplier" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ut3-server-suzhou" type="b2602c69:ProjectViewProjectNode" />
@@ -201,7 +352,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,19 +360,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Git\ut3-server-suzhou\apps\project" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\update" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\statement" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\settle" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\handboard" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Git\ut3-server-suzhou\apps\update\mouldupdate" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\update\unitupdate" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\update" />
       <recent name="D:\Git\ut3-server-suzhou\apps\statement\mouldstatement" />
       <recent name="D:\Git\ut3-server-suzhou\apps\statement\handboardstatement" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\project\mouldexecuteproject" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\project\project" />
-      <recent name="D:\Git\ut3-server-suzhou\apps\handboard\handboard" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git\ut3-server-suzhou\apps\update" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\update\unitupdate" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\project" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\statement" />
+      <recent name="D:\Git\ut3-server-suzhou\apps\settle" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -278,7 +428,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2782" y="0" width="1892" height="1447" extended-state="0" />
+    <frame x="-2730" y="0" width="1892" height="1448" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Key Promoter X" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -288,9 +438,9 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1643013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17248908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@ut3-server-suzhou" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259542" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@ut3-server-suzhou" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259344" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -318,8 +468,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/project/mpworkbench/apps.py" />
-    <entry file="file://$PROJECT_DIR$/apps/project/mpworkbench/admin.py" />
     <entry file="file://$PROJECT_DIR$/apps/project/mpworkbench/models.py" />
     <entry file="file://$PROJECT_DIR$/apps/project/mpworkbench/views.py" />
     <entry file="file://$PROJECT_DIR$/apps/project/workbench/models.py" />
@@ -331,27 +479,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/project/project/models.py" />
-    <entry file="file://$PROJECT_DIR$/apps/project/unitsproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/subunitproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/componentproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/project/initialpartproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -370,20 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="668">
           <caret line="62" column="40" lean-forward="true" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/bomproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/cbomproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -423,24 +536,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/mouldproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1407">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -466,27 +565,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/partsproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/project/unitsproject/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
-          <folding>
-            <element signature="e#1147#17043#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -501,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -509,9 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="e#618#1681#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -519,9 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="19" column="67" lean-forward="false" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
-          <folding>
-            <element signature="e#610#1665#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -529,7 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -537,12 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="e#537#2788#0" expanded="false" />
-            <element signature="e#562#699#0" expanded="false" />
-            <element signature="e#735#901#0" expanded="false" />
-            <element signature="e#935#1106#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -550,11 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#584#721#0" expanded="false" />
-            <element signature="e#757#923#0" expanded="false" />
-            <element signature="e#957#1128#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -562,9 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="428" selection-end-column="25" />
-          <folding>
-            <element signature="e#955#16915#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -572,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
           <caret line="431" column="0" lean-forward="false" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-          <folding>
-            <element signature="e#939#16867#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -582,12 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#559#2790#0" expanded="false" />
-            <element signature="e#584#721#0" expanded="false" />
-            <element signature="e#757#923#0" expanded="false" />
-            <element signature="e#957#1128#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -595,7 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="46" lean-forward="false" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -603,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -611,14 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#184#1053#0" expanded="false" />
-            <element signature="e#1082#3067#0" expanded="false" />
-            <element signature="e#3115#6231#0" expanded="false" />
-            <element signature="e#6274#7143#0" expanded="false" />
-            <element signature="e#7178#9158#0" expanded="false" />
-            <element signature="e#9200#11399#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -634,48 +674,120 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="798">
           <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/update/partsupdate/models.py">
+    <entry file="file://$PROJECT_DIR$/apps/update/partsupdate/models.py" />
+    <entry file="file://$PROJECT_DIR$/apps/update/subunitupdate/models.py" />
+    <entry file="file://$PROJECT_DIR$/apps/settle/payment/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/update/unitsupdate/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="24" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/update/subunitupdate/models.py">
+    <entry file="file://$PROJECT_DIR$/apps/update/unitupdate/apps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/update/unitupdate/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/update/mouldupdate/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        <state relative-caret-position="63">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/settle/payment/models.py">
+    <entry file="file://$PROJECT_DIR$/apps/project/unitsproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="525">
+          <caret line="115" column="19" lean-forward="false" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/subunitproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="48" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/partsproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
           <folding>
-            <element signature="e#334#2425#0" expanded="false" />
+            <element signature="e#437#3000#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/project/unitupdate/models.py">
+    <entry file="file://$PROJECT_DIR$/apps/project/mouldproject/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+        <state relative-caret-position="462">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/mouldexecuteproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/middlepartsproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/componentproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="45" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/cbomproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="46" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/project/bomproject/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
           <folding />
         </state>
       </provider>

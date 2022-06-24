@@ -115,6 +115,11 @@ class UnitProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+    CATEGORY_LIST = (
+        (1, '开发构建'),
+        (2, '版本变更'),
+    )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     ori_project = models.OneToOneField(OriginUnitProject, on_delete=models.CASCADE, verbose_name='原始项目单', help_text='原始项目单')
     name = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机项目版本', help_text='整机项目版本')
 

@@ -38,17 +38,18 @@ class MouldProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+
     CATEGORY_LIST = (
-        (1, '新建'),
-        (2, '更新'),
+        (1, '开发构建'),
+        (2, '版本变更'),
     )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
 
     name = models.CharField(max_length=50, unique=True, verbose_name='模具项目名称', help_text='模具项目名称')
     mould_id = models.CharField(max_length=50, unique=True, verbose_name='模具项目编码', help_text='模具项目编码')
     mould_version = models.ForeignKey(MouldVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='模具项目版本', help_text='模具项目版本')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
-    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='工单类型', help_text='工单类型')
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')
     mistake_tag = models.SmallIntegerField(choices=MISTAKE_LIST, default=0, verbose_name='错误原因', help_text='错误原因')
     process_tag = models.SmallIntegerField(choices=PROCESSTAG, default=0, verbose_name='处理标签', help_text='处理标签')

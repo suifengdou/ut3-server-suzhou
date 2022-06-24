@@ -38,15 +38,17 @@ class ComponentProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+
     CATEGORY_LIST = (
-        (1, '主机'),
-        (2, '附件'),
+        (1, '开发构建'),
+        (2, '版本变更'),
     )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
 
     name = models.CharField(max_length=50, unique=True, verbose_name='组项目名称', help_text='组项目名称')
     component_id = models.CharField(max_length=50, unique=True, verbose_name='组项目编码', help_text='组项目编码')
     component_version =  models.ForeignKey(ComponentVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='组项目版本', help_text='组项目版本')
-    category = models.ForeignKey(ComponentCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
+    component_category = models.ForeignKey(ComponentCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')

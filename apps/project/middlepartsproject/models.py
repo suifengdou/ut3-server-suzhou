@@ -41,6 +41,12 @@ class MiddlePartsProject(models.Model):
         (8, '其他类'),
     )
 
+    CATEGORY_LIST = (
+        (1, '开发构建'),
+        (2, '版本变更'),
+    )
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
+
     name = models.CharField(max_length=90, unique=True, verbose_name='中间件', help_text='中间件')
     units_id = models.CharField(max_length=90, unique=True, verbose_name='中间件编码', help_text='中间件编码')
     middleparts = models.ForeignKey(MiddlePartsVersion, on_delete=models.CASCADE, verbose_name='中间件', help_text='中间件')

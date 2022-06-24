@@ -70,9 +70,9 @@ class UnitUpdate(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-产品变更单'
+        verbose_name = 'UPDATE-产品变更单'
         verbose_name_plural = verbose_name
-        db_table = 'project_unitupdate'
+        db_table = 'update_unitupdate'
 
     def __str__(self):
         return self.name
@@ -104,11 +104,26 @@ class UnitUpdateDetails(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-产品变更单明细'
+        verbose_name = 'UPDATE-产品变更单明细'
         verbose_name_plural = verbose_name
-        db_table = 'project_unitupdate_details'
+        db_table = 'update_unitupdate_details'
 
     def __str__(self):
         return self.atomic_parts__name
+
+
+class LogUnitUpdate(models.Model):
+    object = models.ForeignKey(UnitUpdate, on_delete=models.CASCADE, verbose_name='对象', help_text='对象')
+    name = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='操作人', help_text='操作人')
+    content = models.CharField(max_length=240, verbose_name='操作内容', help_text='操作内容')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
+
+    class Meta:
+        verbose_name = 'UPDATE-产品变更单-日志'
+        verbose_name_plural = verbose_name
+        db_table = 'project_ori_units_logging'
+
+    def __str__(self):
+        return self.name
 
 

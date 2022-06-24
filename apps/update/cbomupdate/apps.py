@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class UnitupdateConfig(AppConfig):
+class CbomupdateConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.project.unitupdate'
+    name = 'apps.update.cbomupdate'

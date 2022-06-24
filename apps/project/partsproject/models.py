@@ -39,6 +39,7 @@ class PartsProject(models.Model):
         (7, '需理赔'),
         (8, '其他类'),
     )
+
     name = models.CharField(max_length=50, unique=True, verbose_name='零配件类型', help_text='零配件类型')
     units_id = models.CharField(max_length=50, unique=True, verbose_name='零配件编码', help_text='零配件编码')
     atomic_parts = models.ForeignKey(AtomicPartsVersion, on_delete=models.CASCADE, verbose_name='原子件', help_text='原子件')
