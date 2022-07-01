@@ -1,16 +1,16 @@
 import datetime
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from .models import PackSupplier
+from .models import MouldUpdate
 
 
-class PackSupplierSerializer(serializers.ModelSerializer):
+class MouldUpdateSerializer(serializers.ModelSerializer):
 
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
 
     class Meta:
-        model = PackSupplier
+        model = MouldUpdate
         fields = "__all__"
 
     def get_level(self, instance):
@@ -51,9 +51,7 @@ class PackSupplierSerializer(serializers.ModelSerializer):
         return ret
 
     def to_representation(self, instance):
-        ret = super(PackSupplierSerializer, self).to_representation(instance)
-        ret["level"] = self.get_level(instance)
-        ret["mode"] = self.get_mode(instance)
+        ret = super(MouldUpdateSerializer, self).to_representation(instance)
         return ret
 
     def create(self, validated_data):

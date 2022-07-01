@@ -71,7 +71,7 @@ class UserSerializer(serializers.ModelSerializer):
             ret["groups"] = self.get_groups(instance)
             ret["company"] = self.get_company(instance)
             ret["department"] = self.get_department(instance)
-            ret["jobrole"] = self.get_platform(instance)
+            ret["jobrole"] = self.get_jobrole(instance)
             return ret
 
     def create(self, validated_data):
@@ -158,3 +158,5 @@ class UserPasswordSerializer(serializers.Serializer):
         else:
             raise serializers.ValidationError("原密码错误！")
         return instance
+
+

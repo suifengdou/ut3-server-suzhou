@@ -5,9 +5,8 @@ import pandas as pd
 
 class Company(models.Model):
     ORDER_STATUS = (
-        (0, '未合作'),
-        (1, '合作中'),
-        (1, '解除合作'),
+        (0, '禁用'),
+        (1, '启用'),
     )
 
     name = models.CharField(unique=True, max_length=30, verbose_name='公司简称', db_index=True, help_text='公司简称')
@@ -33,8 +32,6 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 class Contacts(models.Model):

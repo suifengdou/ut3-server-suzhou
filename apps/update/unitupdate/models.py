@@ -6,7 +6,6 @@ from apps.bom.units.models import Units
 from apps.bom.component.models import ComponentVersion
 
 
-
 class UnitUpdate(models.Model):
 
     ORDER_STATUS = (

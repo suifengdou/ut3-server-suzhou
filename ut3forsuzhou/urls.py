@@ -13,9 +13,31 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+from django.conf.urls import url
+from django.urls import include, path
+from rest_framework.documentation import include_docs_urls
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+route = DefaultRouter()
+from apps.auth.users.router import users_router
+from apps.auth.jobrole.router import jobrole_router
+from apps.auth.groups.router import group_router
+from apps.base.center.router import center_router
+from apps.base.company.router import company_router
+from apps.base.department.router import department_router
+
+route.registry.extend(users_router.registry)
+route.registry.extend(jobrole_router.registry)
+route.registry.extend(group_router.registry)
+route.registry.extend(center_router.registry)
+route.registry.extend(company_router.registry)
+route.registry.extend(department_router.registry)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^', include(route.urls)),
+    url(r'^api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    url(r'^api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    url(r'^api-auth', include("rest_framework.urls")),
+    url(r'^docs/', include_docs_urls("UT3接口文档")),
 ]

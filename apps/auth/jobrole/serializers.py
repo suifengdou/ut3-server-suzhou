@@ -25,12 +25,34 @@ class JobRoleSerializer(serializers.ModelSerializer):
         model = JobRole
         fields = "__all__"
 
+    def get_level(self, instance):
+        level_list = {
+            1: "职员",
+            2: "主管",
+            3: "经理",
+            4: "总监",
+            5: "总裁"
+        }
+        try:
+            ret = {
+                "id": instance.level,
+                "name": level_list.get(instance.level, None)
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
     def to_representation(self, instance):
             ret = super(JobRoleSerializer, self).to_representation(instance)
+            ret["level"] = self.get_level(instance)
             return ret
 
     def create(self, validated_data):
         validated_data["creator"] = self.context["request"].user.username
+
         user = JobRole.objects.create(**validated_data)
         return user
 

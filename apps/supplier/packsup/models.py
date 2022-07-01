@@ -16,11 +16,16 @@ class PackSupplier(models.Model):
         (1, '整装'),
         (2, '客供'),
     )
-
+    ORDER_STATUS = (
+        (0, '未合作'),
+        (1, '合作中'),
+        (2, '解除合作'),
+    )
     name = models.CharField(unique=True, max_length=30, db_index=True, verbose_name='整装客供商', help_text='整装客供商')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='公司', help_text='公司')
     level = models.IntegerField(choices=LEVEL_LIST, default=0, verbose_name='级别', help_text='级别')
     mode = models.IntegerField(choices=pack_mode, default=1, verbose_name='级别', help_text='级别')
+    order_status = models.IntegerField(choices=ORDER_STATUS, default=0, verbose_name='状态', help_text='状态')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

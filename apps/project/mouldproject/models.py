@@ -60,9 +60,9 @@ class MouldProject(models.Model):
     creator = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'PROJECT-组项目'
+        verbose_name = 'PROJECT-模具项目'
         verbose_name_plural = verbose_name
-        db_table = 'project_component'
+        db_table = 'project_mould'
 
     def __str__(self):
         return self.name
@@ -80,9 +80,9 @@ class MouldProjectDetails(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-组项目'
+        verbose_name = 'PROJECT-模具项目明细'
         verbose_name_plural = verbose_name
-        db_table = 'project_component_details'
+        db_table = 'project_mould_details'
 
     def __str__(self):
         return str(self.project.name)
@@ -96,9 +96,9 @@ class LogMouldProject(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
 
     class Meta:
-        verbose_name = 'PROJECT-组项目-日志'
+        verbose_name = 'PROJECT-模具项目-日志'
         verbose_name_plural = verbose_name
-        db_table = 'project_component_logging'
+        db_table = 'project_mould_logging'
 
     def __str__(self):
         return self.name
