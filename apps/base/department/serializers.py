@@ -23,7 +23,6 @@ class DepartmentSerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "显示错误"}
         return ret
 
-
     def to_representation(self, instance):
         ret = super(DepartmentSerializer, self).to_representation(instance)
         ret["center"] = self.get_center(instance)
@@ -40,3 +39,4 @@ class DepartmentSerializer(serializers.ModelSerializer):
         validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
+

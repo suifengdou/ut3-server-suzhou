@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'apps.auth.jobrole.apps.JobroleConfig',
     'apps.base.center.apps.CenterConfig',
     'apps.base.company.apps.CompanyConfig',
-    'apps.base.department.apps.DepartmentConfig'
+    'apps.base.department.apps.DepartmentConfig',
+    'apps.supplier.handboardsup.apps.HandboardsupConfig'
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"

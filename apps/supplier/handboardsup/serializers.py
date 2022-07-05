@@ -13,7 +13,6 @@ class HandBoardSupplierSerializer(serializers.ModelSerializer):
         model = HandBoardSupplier
         fields = "__all__"
 
-
     def get_level(self, instance):
         LEVEL_LIST = {
             0: "无",
@@ -34,9 +33,42 @@ class HandBoardSupplierSerializer(serializers.ModelSerializer):
             }
         return ret
 
+    def get_order_status(self, instance):
+        STATUS_LIST = {
+            0: "未合作",
+            1: "合作中",
+            2: "解除合作",
+        }
+        try:
+            ret = {
+                "id": instance.order_status,
+                "name": STATUS_LIST.get(instance.order_status, None)
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def get_company(self, instance):
+        try:
+            ret = {
+                "id": instance.company.id,
+                "name": instance.company.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
     def to_representation(self, instance):
         ret = super(HandBoardSupplierSerializer, self).to_representation(instance)
         ret["level"] = self.get_level(instance)
+        ret["order_status"] = self.get_order_status(instance)
+        ret["company"] = self.get_company(instance)
         return ret
 
     def create(self, validated_data):

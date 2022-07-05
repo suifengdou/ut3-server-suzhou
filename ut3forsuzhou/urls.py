@@ -26,13 +26,18 @@ from apps.auth.groups.router import group_router
 from apps.base.center.router import center_router
 from apps.base.company.router import company_router
 from apps.base.department.router import department_router
+from apps.supplier.handboardsup.router import handboardsup_router
 
+# 账户权限
 route.registry.extend(users_router.registry)
 route.registry.extend(jobrole_router.registry)
 route.registry.extend(group_router.registry)
+# 基本设置
 route.registry.extend(center_router.registry)
 route.registry.extend(company_router.registry)
 route.registry.extend(department_router.registry)
+# 供应商
+route.registry.extend(handboardsup_router.registry)
 
 urlpatterns = [
     url(r'^', include(route.urls)),

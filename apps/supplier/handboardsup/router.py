@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
-from .views import DepartmentViewset
+from .views import HandBoardSupplierViewset
 
 
-department_router = DefaultRouter()
-department_router.register(r'base/department', DepartmentViewset, basename='department')
+handboardsup_router = DefaultRouter()
+handboardsup_router.register(r'supplier/handboardsup', HandBoardSupplierViewset, basename='handboardsup')
 
