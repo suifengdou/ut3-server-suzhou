@@ -1,5 +1,4 @@
 from django.db import models
-from apps.base.company.models import Company
 import django.utils.timezone as timezone
 import pandas as pd
 from apps.auth.users.models import UserProfile
@@ -69,7 +68,7 @@ class OriginUnitProject(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-原始整机项目'
+        verbose_name = 'PROJECT-原始整机项目工程'
         verbose_name_plural = verbose_name
         db_table = 'project_ori_units'
 
@@ -121,8 +120,9 @@ class UnitProject(models.Model):
     )
     category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     ori_project = models.OneToOneField(OriginUnitProject, on_delete=models.CASCADE, verbose_name='原始项目单', help_text='原始项目单')
+    product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品线', help_text='产品线')
     name = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机项目版本', help_text='整机项目版本')
-
+    nationality = models.ForeignKey(Nationality, on_delete=models.CASCADE, verbose_name='国别', help_text='国别')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')
@@ -135,7 +135,7 @@ class UnitProject(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-整机项目'
+        verbose_name = 'PROJECT-整机项目工程'
         verbose_name_plural = verbose_name
         db_table = 'project_units'
 
@@ -146,7 +146,7 @@ class UnitProject(models.Model):
 class UnitProjectDetails(models.Model):
 
     project = models.ForeignKey(UnitProject, on_delete=models.CASCADE, verbose_name='项目', help_text='项目')
-    details = models.ForeignKey(SubUnitVersion, on_delete=models.CASCADE, verbose_name='子项目', help_text='子项目')
+    details = models.ForeignKey(SubUnitVersion, on_delete=models.CASCADE, verbose_name='子项版本', help_text='子项版本')
 
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
@@ -155,12 +155,12 @@ class UnitProjectDetails(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-整机项目'
+        verbose_name = 'PROJECT-整机项目工程明细'
         verbose_name_plural = verbose_name
         db_table = 'project_units_details'
 
     def __str__(self):
-        return str(self.unit_project.name)
+        return str(self.project.name)
 
 
 class LogUnitProject(models.Model):
@@ -171,7 +171,7 @@ class LogUnitProject(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
 
     class Meta:
-        verbose_name = 'PROJECT-原始整机项目-日志'
+        verbose_name = 'PROJECT-原始整机项目工程-日志'
         verbose_name_plural = verbose_name
         db_table = 'project_units_logging'
 

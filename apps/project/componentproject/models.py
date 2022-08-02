@@ -1,11 +1,12 @@
 
 from django.db import models
-from apps.bom.productline.models import ProductLine
-from apps.utils.geography.models import Nationality
 import pandas as pd
 from apps.auth.users.models import UserProfile
 from apps.bom.component.models import ComponentVersion, ComponentCategory
 from apps.bom.middleparts.models import MiddlePartsVersion
+
+from apps.bom.subunit.models import SubUnitVersion
+from apps.bom.productline.models import ProductLine
 
 
 class ComponentProject(models.Model):
@@ -47,7 +48,10 @@ class ComponentProject(models.Model):
 
     name = models.CharField(max_length=50, unique=True, verbose_name='组项目名称', help_text='组项目名称')
     component_id = models.CharField(max_length=50, unique=True, verbose_name='组项目编码', help_text='组项目编码')
-    component_version =  models.ForeignKey(ComponentVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='组项目版本', help_text='组项目版本')
+    subunits_version = models.ForeignKey(SubUnitVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项版本', help_text='子项版本')
+    product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品系列', help_text='产品系列')
+
+    component_version = models.ForeignKey(ComponentVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='组项版本', help_text='组项版本')
     component_category = models.ForeignKey(ComponentCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 

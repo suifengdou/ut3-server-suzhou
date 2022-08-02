@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class InitialpartsConfig(AppConfig):
-    name = 'initialparts'
+    name = 'apps.bom.initialparts'

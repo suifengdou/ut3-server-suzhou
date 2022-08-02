@@ -6,25 +6,6 @@ from apps.auth.users.models import UserProfile
 from apps.base.company.models import Company
 
 
-class ContractCategory(models.Model):
-
-    name = models.CharField(max_length=50, unique=True, verbose_name='零配件类型', help_text='零配件类型')
-    units_id = models.CharField(max_length=50, unique=True, verbose_name='零配件编码', help_text='零配件编码')
-    memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
-    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
-    updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
-    is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
-    creator = models.CharField(null=True, blank=True, max_length=150, verbose_name='创建者', help_text='创建者')
-
-    class Meta:
-        verbose_name = 'PURCHASE-合同类型'
-        verbose_name_plural = verbose_name
-        db_table = 'purchase_contract_category'
-
-    def __str__(self):
-        return self.name
-
-
 class Contract(models.Model):
     ORDER_STATUS = (
         (0, '已被取消'),
@@ -59,6 +40,18 @@ class Contract(models.Model):
         (1, '新签'),
         (2, '续签'),
     )
+    CATEGORY_LIST = (
+        (1, '手板'),
+        (2, '模具'),
+        (3, '整装'),
+        (4, '物流'),
+        (5, '采买'),
+        (6, '框架'),
+        (7, '保管'),
+        (8, '授权'),
+        (9, '其他'),
+    )
+
 
     name = models.CharField(max_length=50, verbose_name='合同名称', help_text='合同名称')
     contract_id = models.CharField(max_length=50, unique=True, null=True, blank=True, verbose_name='合同编码', help_text='合同编码')

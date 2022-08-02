@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
-from .views import DepartmentViewset
+from .views import PackSupplierViewset
 
 
-department_router = DefaultRouter()
-department_router.register(r'base/department', DepartmentViewset, basename='department')
+packsup_router = DefaultRouter()
+packsup_router.register(r'supplier/packsup', PackSupplierViewset, basename='packsup')
 

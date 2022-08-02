@@ -1,6 +1,5 @@
 
 from django.db import models
-from apps.base.center.models import Center
 
 
 class Material(models.Model):
@@ -21,3 +20,13 @@ class Material(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def verify_mandatory(cls, columns_key):
+        VERIFY_FIELD = ["name", "texture", "hardness", "memo"]
+        for i in VERIFY_FIELD:
+            if i not in columns_key:
+                return 'verify_field error, must have mandatory field: "{}""'.format(i)
+        else:
+            return None
+

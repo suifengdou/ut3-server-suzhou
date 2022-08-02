@@ -49,7 +49,6 @@ class ExperimentWorkorder(models.Model):
     result = models.BooleanField(default=False, verbose_name='实验结果', help_text='实验结果')
     handle_time = models.DateTimeField(null=True, blank=True, verbose_name='更新时间', help_text='更新时间')
 
-
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')
@@ -62,9 +61,9 @@ class ExperimentWorkorder(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'FAULT-手板问题单'
+        verbose_name = 'WORKORDER-实验室工单'
         verbose_name_plural = verbose_name
-        db_table = 'fault_handboard'
+        db_table = 'workorder_expriment'
 
     def __str__(self):
         return self.name

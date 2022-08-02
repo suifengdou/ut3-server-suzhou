@@ -31,7 +31,7 @@ class SubUnitVersion(models.Model):
     name = models.CharField(max_length=60, unique=True, verbose_name='版本号名', help_text='版本号名')
     number = models.IntegerField(null=True, blank=True, verbose_name='版本', help_text='版本')
     version_id = models.CharField(null=True, blank=True, max_length=60, verbose_name='版本编码', help_text='版本编码')
-    subunit = models.ForeignKey(SubUnit, on_delete=models.CASCADE, verbose_name='子项目', help_text='子项目')
+    subunit = models.ForeignKey(SubUnit, on_delete=models.CASCADE, verbose_name='子项', help_text='子项')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

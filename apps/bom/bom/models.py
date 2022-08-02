@@ -2,14 +2,14 @@
 from django.db import models
 from apps.bom.parts.models import AtomicPartsVersion
 from apps.auth.users.models import UserProfile
-from apps.bom.units.models import Units
+from apps.bom.units.models import UnitsVersion
 
 
 class BOM(models.Model):
 
     name = models.CharField(max_length=50, unique=True, verbose_name='BOM', help_text='BOM')
     bom_id = models.CharField(max_length=50, unique=True, verbose_name='BOM编码', help_text='BOM编码')
-    units = models.OneToOneField(Units, on_delete=models.CASCADE, verbose_name='整机', help_text='整机')
+    units = models.OneToOneField(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机', help_text='整机')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

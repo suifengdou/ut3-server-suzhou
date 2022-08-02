@@ -2,6 +2,7 @@
 from django.db import models
 from apps.bom.units.models import UnitsVersion
 from apps.bom.bom.models import BOMVersion
+from apps.project.partsproject.models import AtomicPartsProject
 from apps.auth.users.models import UserProfile
 
 
@@ -40,11 +41,12 @@ class BOMProject(models.Model):
         (1, '开发构建'),
         (2, '版本变更'),
     )
-    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
+
     name = models.CharField(max_length=50, verbose_name='BOM项目', help_text='BOM项目')
     bom_id = models.CharField(max_length=50, verbose_name='BOM编码', help_text='BOM编码')
     units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机版本', help_text='整机版本')
     bom = models.OneToOneField(BOMVersion, on_delete=models.CASCADE, verbose_name='BOM版本', help_text='BOM版本')
+    category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')

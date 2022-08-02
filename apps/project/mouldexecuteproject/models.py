@@ -52,6 +52,9 @@ class MouldExecuteProject(models.Model):
     execute_id = models.CharField(max_length=50, unique=True, verbose_name='模具执行单号', help_text='模具执行单号')
 
     supplier = models.ForeignKey(MouldSupplier, on_delete=models.CASCADE, null=True, blank=True, verbose_name='供应商', help_text='供应商')
+    group_label = models.CharField(max_length=60, verbose_name='组标签', help_text='组标签')
+    quantity = models.IntegerField(default=1, verbose_name='模具总数', help_text='模具总数')
+    amount = models.FloatField(default=0, verbose_name='总金额', help_text='总金额')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='工单状态', help_text='工单状态')
@@ -76,8 +79,9 @@ class MouldExecuteProjectDetails(models.Model):
 
     object = models.ForeignKey(MouldExecuteProject, on_delete=models.CASCADE, verbose_name='模具执行单', help_text='模具执行单')
     name = models.ForeignKey(MouldVersion, on_delete=models.CASCADE, verbose_name='模具版本', help_text='模具版本')
-    units_id = models.CharField(max_length=50, unique=True, verbose_name='整机编码', help_text='整机编码')
     group_number = models.CharField(null=True, blank=True, max_length=30, verbose_name='组编号', help_text='组编号')
+    quantity = models.IntegerField(default=1, verbose_name='数量', help_text='数量')
+    estimated_amount = models.FloatField(default=0, verbose_name='预估金额', help_text='预估金额')
     amount = models.FloatField(default=0, verbose_name='金额', help_text='金额')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')

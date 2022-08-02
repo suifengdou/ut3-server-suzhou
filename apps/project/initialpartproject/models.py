@@ -6,6 +6,7 @@ from apps.bom.productline.models import ProductLine
 from apps.auth.users.models import UserProfile
 from apps.bom.component.models import ComponentVersion
 from apps.bom.units.models import UnitsVersion
+from apps.bom.subunit.models import SubUnitVersion
 from apps.bom.initialparts.models import InitialParts
 
 
@@ -51,7 +52,8 @@ class OriInitialPartsProject(models.Model):
 
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, null=True, blank=True, verbose_name='产品线', help_text='产品线')
     units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='整机', help_text='整机')
-    units_id = models.CharField(max_length=90, null=True, blank=True, verbose_name='整机编码', help_text='整机编码')
+    subunits = models.ForeignKey(SubUnitVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='子项',
+                              help_text='子项')
     component = models.ForeignKey(ComponentVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='组', help_text='组')
     component_id = models.CharField(max_length=90, null=True, blank=True, verbose_name='组编码', help_text='组编码')
     category = models.ForeignKey(PartsCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
@@ -136,9 +138,10 @@ class InitialPartsProject(models.Model):
     mp_id = models.CharField(max_length=90, unique=True, verbose_name='初始物料编码', help_text='初始物料编码')
     initial_part = models.ForeignKey(InitialParts, on_delete=models.CASCADE, verbose_name='初始物料', help_text='初始物料')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, null=True, blank=True, verbose_name='产品线', help_text='产品线')
-    units = models.ForeignKey(Units, on_delete=models.CASCADE, null=True, blank=True, verbose_name='整机项目', help_text='整机项目')
-    units_id = models.CharField(max_length=90, null=True, blank=True, verbose_name='整机项目编码', help_text='整机项目编码')
-    component = models.ForeignKey(Component, on_delete=models.CASCADE, null=True, blank=True, verbose_name='组项目', help_text='组项目')
+    units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='整机项目', help_text='整机项目')
+    subunits = models.ForeignKey(SubUnitVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='子项',
+                              help_text='子项')
+    component = models.ForeignKey(ComponentVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='组项目', help_text='组项目')
     component_id = models.CharField(max_length=90, null=True, blank=True, verbose_name='组项目编码', help_text='组项目编码')
     category = models.ForeignKey(PartsCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
     diagram_number = models.IntegerField(null=True, blank=True, verbose_name='爆炸图号', help_text='爆炸图号')

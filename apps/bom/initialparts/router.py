@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
-from .views import MaterialViewset
+from .views import PartsCategorySerializerViewset, InitialPartsSerializerViewset
 
 
-department_router = DefaultRouter()
-department_router.register(r'bom/material', MaterialViewset, basename='material')
+initialparts_router = DefaultRouter()
+initialparts_router.register(r'bom/initialparts/partscategory', PartsCategorySerializerViewset, basename='partscategory')
+initialparts_router.register(r'bom/initialparts/initialparts', InitialPartsSerializerViewset, basename='initialparts')
 

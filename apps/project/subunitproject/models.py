@@ -48,9 +48,9 @@ class SubUnitProject(models.Model):
     )
     category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
 
-    name = models.CharField(max_length=50, unique=True, verbose_name='子项目名称', help_text='子项目名称')
-    subunits_id = models.CharField(max_length=50, unique=True, verbose_name='子项目编码', help_text='子项目编码')
-    subunits_version =  models.ForeignKey(SubUnitVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项目版本', help_text='子项目版本')
+    name = models.CharField(max_length=50, unique=True, verbose_name='子项项目工程名称', help_text='子项项目工程名称')
+    subunits_id = models.CharField(max_length=50, unique=True, verbose_name='子项项目工程编码', help_text='子项项目工程编码')
+    subunits_version = models.ForeignKey(SubUnitVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项目版本', help_text='子项目版本')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品线', help_text='产品线')
     type = models.IntegerField(choices=TYPE_LIST, default=1, verbose_name='子项目类别', help_text='子项目类别')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
@@ -65,7 +65,7 @@ class SubUnitProject(models.Model):
     creator = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
 
     class Meta:
-        verbose_name = 'PROJECT-子项目'
+        verbose_name = 'PROJECT-子项项目工程'
         verbose_name_plural = verbose_name
         db_table = 'project_units'
 
@@ -85,12 +85,12 @@ class SubUnitProjectDetails(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PROJECT-子项目'
+        verbose_name = 'PROJECT-子项项目工程明细'
         verbose_name_plural = verbose_name
         db_table = 'project_units_details'
 
     def __str__(self):
-        return str(self.unit_project.name)
+        return str(self.project.name)
 
 
 class LogSubUnitProject(models.Model):
@@ -101,7 +101,7 @@ class LogSubUnitProject(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
 
     class Meta:
-        verbose_name = 'PROJECT-子项目-日志'
+        verbose_name = 'PROJECT-子项项目工程-日志'
         verbose_name_plural = verbose_name
         db_table = 'project_units_logging'
 

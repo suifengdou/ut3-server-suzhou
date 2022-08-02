@@ -20,9 +20,7 @@ from rest_framework import serializers
 from .models import SubUnit, SubUnitVersion
 from .serializers import SubUnitSerializer, SubUnitVersionSerializer
 from .filters import SubUnitFilter, SubUnitVersionFilter
-from apps.utils.geography.models import City, District
 
-from apps.utils.geography.tools import PickOutAdress
 from ut3forsuzhou.settings import EXPORT_TOPLIMIT
 
 
@@ -392,13 +390,6 @@ class SubUnitViewset(viewsets.ModelViewSet):
             _q_shop =  Shop.objects.filter(name=row["shop"])
             if _q_shop.exists():
                 order.shop = _q_shop[0]
-
-            _spilt_addr = PickOutAdress(str(order.address))
-            _rt_addr = _spilt_addr.pickout_addr()
-            if not isinstance(_rt_addr, dict):
-                report_dic["error"].append("%s 地址无法提取省市区" % order.address)
-                report_dic["false"] += 1
-                continue
             cs_info_fields = ["province", "city", "district", "address"]
             for key_word in cs_info_fields:
                 setattr(order, key_word, _rt_addr.get(key_word, None))
@@ -795,17 +786,6 @@ class SubUnitVersionViewset(viewsets.ModelViewSet):
             _q_shop =  Shop.objects.filter(name=row["shop"])
             if _q_shop.exists():
                 order.shop = _q_shop[0]
-
-            _spilt_addr = PickOutAdress(str(order.address))
-            _rt_addr = _spilt_addr.pickout_addr()
-            if not isinstance(_rt_addr, dict):
-                report_dic["error"].append("%s 地址无法提取省市区" % order.address)
-                report_dic["false"] += 1
-                continue
-            cs_info_fields = ["province", "city", "district", "address"]
-            for key_word in cs_info_fields:
-                setattr(order, key_word, _rt_addr.get(key_word, None))
-
             try:
                 order.creator = request.user.username
                 order.save()

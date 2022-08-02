@@ -3,7 +3,6 @@ from django.db import models
 from apps.auth.users.models import UserProfile
 from apps.bom.parts.models import AtomicPartsVersion
 from apps.bom.bom.models import BOM, BOMVersion
-from apps.bom.units.models import Units
 
 
 class CBOM(models.Model):
@@ -103,7 +102,7 @@ class CBOMVersion(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
 
     class Meta:
-        verbose_name = 'PURCHASE-CBOM'
+        verbose_name = 'PURCHASE-CBOM版本'
         verbose_name_plural = verbose_name
         db_table = 'purchase_cbom_version'
 

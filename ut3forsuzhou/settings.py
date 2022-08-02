@@ -50,7 +50,15 @@ INSTALLED_APPS = [
     'apps.base.center.apps.CenterConfig',
     'apps.base.company.apps.CompanyConfig',
     'apps.base.department.apps.DepartmentConfig',
-    'apps.supplier.handboardsup.apps.HandboardsupConfig'
+    'apps.supplier.handboardsup.apps.HandboardsupConfig',
+    'apps.supplier.mouldsup.apps.MouldsupConfig',
+    'apps.supplier.packsup.apps.PacksupConfig',
+    'apps.supplier.logisticssup.apps.LogisticssupConfig',
+    'apps.bom.material.apps.MaterialConfig',
+    'apps.bom.productline.apps.ProductlineConfig',
+    'apps.bom.initialparts.apps.InitialpartsConfig',
+    'apps.bom.standardlabrary.apps.StandardlabraryConfig',
+    'apps.bom.subunit.apps.SubunitConfig',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"
@@ -137,7 +145,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

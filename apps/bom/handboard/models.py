@@ -5,6 +5,7 @@ from apps.supplier.handboardsup.models import HandBoardSupplier
 from apps.bom.subunit.models import SubUnit
 from apps.bom.initialparts.models import InitialParts
 
+
 class HandBoardCategory(models.Model):
 
     name = models.CharField(max_length=50, unique=True, verbose_name='手板类型', help_text='手板类型')
@@ -13,6 +14,7 @@ class HandBoardCategory(models.Model):
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
     is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
     creator = models.CharField(null=True, blank=True, max_length=150, verbose_name='创建者', help_text='创建者')
+
     class Meta:
         verbose_name = 'BOM-手板类型'
         verbose_name_plural = verbose_name
@@ -32,6 +34,7 @@ class HandBoard(models.Model):
     )
     name = models.CharField(max_length=50, unique=True, verbose_name='手板名称', help_text='手板名称')
     units_id = models.CharField(max_length=50, unique=True, verbose_name='手板编码', help_text='手板编码')
+    subunit = models.ForeignKey(SubUnit, on_delete=models.CASCADE, verbose_name='子项', help_text='子项')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

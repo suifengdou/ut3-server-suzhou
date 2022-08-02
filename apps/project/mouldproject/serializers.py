@@ -13,8 +13,74 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
-from .models import MouldProject, MouldProjectDetails
+from .models import OriMouldProject, OriMouldProjectDetails, MouldProject, MouldProjectDetails
 User = get_user_model()
+
+
+class OriMouldProjectSerializer(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+
+    class Meta:
+        model = OriMouldProject
+        fields = "__all__"
+
+    def get_shop(self, instance):
+        try:
+            ret = {
+                "id": instance.shop.id,
+                "name": instance.shop.name,
+            }
+        except:
+            ret = {"id": -1, "name": "显示错误"}
+        return ret
+
+
+    def to_representation(self, instance):
+            ret = super(OriMouldProjectSerializer, self).to_representation(instance)
+            return ret
+
+    def create(self, validated_data):
+        validated_data["creator"] = self.context["request"].user.username
+        return self.Meta.model.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        return instance
+
+
+class OriMouldProjectDetailsSerializer(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+
+    class Meta:
+        model = OriMouldProjectDetails
+        fields = "__all__"
+
+    def get_shop(self, instance):
+        try:
+            ret = {
+                "id": instance.shop.id,
+                "name": instance.shop.name,
+            }
+        except:
+            ret = {"id": -1, "name": "显示错误"}
+        return ret
+
+
+    def to_representation(self, instance):
+            ret = super(OriMouldProjectDetailsSerializer, self).to_representation(instance)
+            return ret
+
+    def create(self, validated_data):
+        validated_data["creator"] = self.context["request"].user.username
+        return self.Meta.model.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        return instance
 
 
 class MouldProjectSerializer(serializers.ModelSerializer):
@@ -81,5 +147,6 @@ class MouldProjectDetailsSerializer(serializers.ModelSerializer):
         validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
+
 
 

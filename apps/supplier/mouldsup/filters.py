@@ -14,7 +14,7 @@ class NumberInFilter(BaseInFilter, NumberFilter):
     pass
 
 
-class LogisticsSupplierFilter(django_filters.FilterSet):
+class MouldSupplierFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     level__in = NumberInFilter(field_name="level", lookup_expr="in")
     created_time = django_filters.DateTimeFromToRangeFilter()

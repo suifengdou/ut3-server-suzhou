@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 /apps/**/migrations
-/ut3/settings.py
 /static_new
 # C extensions
 *.so
@@ -130,4 +129,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-sittings.py
+/ut3forsuzhou/sittings.py

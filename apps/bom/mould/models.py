@@ -1,11 +1,11 @@
 
 from django.db import models
-from apps.base.center.models import Center
 from apps.supplier.mouldsup.models import MouldSupplier
 from apps.supplier.packsup.models import PackSupplier
 from apps.bom.units.models import Units
 from apps.bom.middleparts.models import MiddlePartsVersion
 from apps.auth.users.models import UserProfile
+from apps.bom.productline.models import ProductLine
 
 
 class Mould(models.Model):
@@ -19,6 +19,8 @@ class Mould(models.Model):
 
     name = models.CharField(max_length=60, unique=True, verbose_name='模具名', help_text='模具名')
     mould_id = models.CharField(max_length=60, unique=True, verbose_name='模具ID', help_text='模具ID')
+    product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品系列', help_text='产品系列')
+    Units = models.ForeignKey(Units, on_delete=models.CASCADE, verbose_name='整机', help_text='整机')
     cavity_num = models.CharField(max_length=60, null=True, blank=True, verbose_name='模穴数', help_text='模穴数')
     gate_type = models.CharField(max_length=60, null=True, blank=True, verbose_name='浇口类型', help_text='浇口类型')
     cavity_steel = models.CharField(max_length=60, null=True, blank=True, verbose_name='前模钢料', help_text='前模钢料')

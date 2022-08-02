@@ -13,9 +13,22 @@ class PLCategorySerializer(serializers.ModelSerializer):
         model = PLCategory
         fields = "__all__"
 
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
 
     def to_representation(self, instance):
         ret = super(PLCategorySerializer, self).to_representation(instance)
+        ret['creator'] = self.get_creator(instance)
         return ret
 
     def create(self, validated_data):
@@ -37,9 +50,36 @@ class ProductLineSerializer(serializers.ModelSerializer):
         model = ProductLine
         fields = "__all__"
 
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def get_category(self, instance):
+        try:
+            ret = {
+                "id": instance.category.id,
+                "name": instance.category.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
 
     def to_representation(self, instance):
         ret = super(ProductLineSerializer, self).to_representation(instance)
+        ret['creator'] = self.get_creator(instance)
+        ret['category'] = self.get_category(instance)
         return ret
 
     def create(self, validated_data):

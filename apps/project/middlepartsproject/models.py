@@ -6,6 +6,7 @@ from apps.bom.middleparts.models import MiddlePartsVersion
 from apps.supplier.packsup.models import PackSupplier
 from apps.bom.component.models import ComponentVersion
 from apps.bom.units.models import UnitsVersion
+from apps.bom.subunit.models import SubUnitVersion
 from apps.bom.productline.models import ProductLine
 
 
@@ -51,12 +52,15 @@ class MiddlePartsProject(models.Model):
     units_id = models.CharField(max_length=90, unique=True, verbose_name='中间件编码', help_text='中间件编码')
     middleparts = models.ForeignKey(MiddlePartsVersion, on_delete=models.CASCADE, verbose_name='中间件', help_text='中间件')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, null=True, blank=True, verbose_name='产品线', help_text='产品线')
-    units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='整机项目', help_text='整机项目')
+    units = models.ForeignKey(UnitsVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='整机项目', help_text='整机版本')
+    subunits = models.ForeignKey(SubUnitVersion, on_delete=models.CASCADE, null=True, blank=True, verbose_name='子项',
+                              help_text='子项')
     pack_supplier = models.ForeignKey(PackSupplier, on_delete=models.CASCADE, null=True, blank=True, verbose_name='供应商', help_text='供应商')
-    component = models.ForeignKey(ComponentVersion, on_delete=models.CASCADE, verbose_name='组件', help_text='组件')
+    component = models.ForeignKey(ComponentVersion, on_delete=models.CASCADE, verbose_name='组项', help_text='组项')
     quantity = models.IntegerField(null=True, blank=True, verbose_name='用量', help_text='用量')
     is_lacquered = models.BooleanField(default=False, verbose_name='是否喷漆', help_text='是否喷漆')
     lacquer_color_number = models.CharField(null=True, blank=True, max_length=60, verbose_name='色号', help_text='色号')
+
     craft_content = models.CharField(null=True, blank=True, max_length=200, verbose_name='工艺内容', help_text='工艺内容')
 
     is_cell = models.BooleanField(default=False, verbose_name='是否单元', help_text='是否单元')

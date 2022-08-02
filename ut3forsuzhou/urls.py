@@ -27,6 +27,15 @@ from apps.base.center.router import center_router
 from apps.base.company.router import company_router
 from apps.base.department.router import department_router
 from apps.supplier.handboardsup.router import handboardsup_router
+from apps.supplier.mouldsup.router import mouldsup_router
+from apps.supplier.packsup.router import packsup_router
+from apps.supplier.logisticssup.router import logistics_router
+from apps.bom.material.router import material_router
+from apps.bom.productline.router import productline_router
+from apps.bom.initialparts.router import initialparts_router
+from apps.bom.standardlabrary.router import screw_router
+from apps.bom.subunit.router import subunit_router
+
 
 # 账户权限
 route.registry.extend(users_router.registry)
@@ -38,6 +47,16 @@ route.registry.extend(company_router.registry)
 route.registry.extend(department_router.registry)
 # 供应商
 route.registry.extend(handboardsup_router.registry)
+route.registry.extend(mouldsup_router.registry)
+route.registry.extend(packsup_router.registry)
+route.registry.extend(logistics_router.registry)
+# BOM
+route.registry.extend(material_router.registry)
+route.registry.extend(productline_router.registry)
+route.registry.extend(initialparts_router.registry)
+route.registry.extend(screw_router.registry)
+route.registry.extend(subunit_router.registry)
+
 
 urlpatterns = [
     url(r'^', include(route.urls)),
