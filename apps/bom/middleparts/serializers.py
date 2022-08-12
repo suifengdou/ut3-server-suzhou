@@ -13,9 +13,33 @@ class MiddlePartsSerializer(serializers.ModelSerializer):
         model = MiddleParts
         fields = "__all__"
 
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_category(self, instance):
+        try:
+            ret = {
+                "id": instance.category.id,
+                "name": instance.category.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
 
     def to_representation(self, instance):
         ret = super(MiddlePartsSerializer, self).to_representation(instance)
+        ret['creator'] = self.get_creator(instance)
+        ret['category'] = self.get_category(instance)
         return ret
 
     def create(self, validated_data):
@@ -37,9 +61,41 @@ class MiddlePartsVersionSerializer(serializers.ModelSerializer):
         model = MiddlePartsVersion
         fields = "__all__"
 
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_material(self, instance):
+        try:
+            ret = {
+                "id": instance.material.id,
+                "name": instance.material.username,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_middleparts(self, instance):
+        try:
+            ret = {
+                "id": instance.middleparts.id,
+                "name": instance.middleparts.username,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
 
     def to_representation(self, instance):
         ret = super(MiddlePartsVersionSerializer, self).to_representation(instance)
+        ret['creator'] = self.get_creator(instance)
+        ret['material'] = self.get_material(instance)
+        ret['middleparts'] = self.get_middleparts(instance)
         return ret
 
     def create(self, validated_data):

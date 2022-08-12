@@ -6,43 +6,42 @@
 # @Software: PyCharm
 
 import django_filters
-from .models import ComponentCategory, Component, ComponentVersion, ComponentVersionDetails
+from .models import AtomicParts, AtomicPartsVersion, Goods, GoodsDetails
 
 
-class ComponentCategoryFilter(django_filters.FilterSet):
+class AtomicPartsFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = ComponentCategory
+        model = AtomicParts
         fields = "__all__"
 
 
-class ComponentFilter(django_filters.FilterSet):
+class AtomicPartsVersionFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = Component
+        model = AtomicPartsVersion
         fields = "__all__"
 
 
-class ComponentVersionFilter(django_filters.FilterSet):
+class GoodsFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = ComponentVersion
+        model = Goods
         fields = "__all__"
 
 
-class ComponentVersionDetailsFilter(django_filters.FilterSet):
+class GoodsDetailsFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = ComponentVersionDetails
+        model = GoodsDetails
         fields = "__all__"
-
 
 

@@ -6,7 +6,7 @@ from apps.auth.users.models import UserProfile
 
 class PLCategory(models.Model):
     name = models.CharField(unique=True, max_length=30, verbose_name='系列类型', db_index=True, help_text='系列类型')
-    pl_id = models.CharField(unique=True, max_length=30, verbose_name='类型代码', db_index=True, help_text='类型代码')
+    code = models.CharField(unique=True, max_length=30, verbose_name='类型代码', db_index=True, help_text='类型代码')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
@@ -26,7 +26,7 @@ class PLCategory(models.Model):
 class ProductLine(models.Model):
 
     name = models.CharField(unique=True, max_length=30, verbose_name='系列名称', db_index=True, help_text='系列名称')
-    line_id = models.CharField(unique=True, max_length=30, verbose_name='系列编码', db_index=True, help_text='系列编码')
+    code = models.CharField(unique=True, max_length=30, verbose_name='系列编码', db_index=True, help_text='系列编码')
     category = models.ForeignKey(PLCategory, on_delete=models.CASCADE, verbose_name='系列类型', help_text='系列类型')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 

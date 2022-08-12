@@ -6,7 +6,7 @@ from apps.auth.users.models import UserProfile
 
 class PartsCategory(models.Model):
     name = models.CharField(unique=True, max_length=30, verbose_name='物料类型', db_index=True, help_text='物料类型')
-    pc_id = models.CharField(unique=True, max_length=30, verbose_name='类型代码', db_index=True, help_text='类型代码')
+    code = models.CharField(unique=True, max_length=30, verbose_name='类型代码', db_index=True, help_text='类型代码')
     is_cost = models.BooleanField(default=False, verbose_name='是否成本', help_text='是否成本')
     is_standard = models.BooleanField(default=False, verbose_name='是否标准件', help_text='是否标准件')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
@@ -33,7 +33,7 @@ class InitialParts(models.Model):
     )
 
     name = models.CharField(max_length=90, unique=True, verbose_name='初始物料', help_text='初始物料')
-    ip_id = models.CharField(max_length=90, unique=True, verbose_name='初始物料编码', help_text='初始物料编码')
+    code = models.CharField(max_length=90, unique=True, verbose_name='初始物料编码', help_text='初始物料编码')
     category = models.ForeignKey(PartsCategory, on_delete=models.CASCADE, verbose_name='类型', help_text='类型')
     diagram_number = models.IntegerField(null=True, blank=True, verbose_name='爆炸图号', help_text='爆炸图号')
 
@@ -54,7 +54,7 @@ class InitialParts(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
     is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
-    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建者', help_text='创建者')
+    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True, verbose_name='创建者', help_text='创建者')
 
     class Meta:
         verbose_name = 'BOM-初始物料'

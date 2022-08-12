@@ -281,15 +281,15 @@ class ScrewSerializer(serializers.ModelSerializer):
         name = "%s%s%sX%s %s %s %s" % (name_dic["material"], name_dic["head_type"], str(validated_data["diameter"]), \
                                        str(validated_data["length"]), name_dic["tooth_type"], \
                                        name_dic["finish"], name_dic["slot_type"])
-        screw_id = "M%sX%s%s-%s-%s-%s[%s]" % (str(validated_data["diameter"]), str(validated_data["length"]), \
+        code = "M%sX%s%s-%s-%s-%s[%s]" % (str(validated_data["diameter"]), str(validated_data["length"]), \
                                               str(validated_data["material"]),  str(validated_data["head_type"]), \
                                               str(validated_data["tooth_type"]), str(validated_data["finish"]), \
                                               str(validated_data["slot_type"]))
-        _q_check_id = Screw.objects.filter(screw_id=screw_id)
+        _q_check_id = Screw.objects.filter(code=code)
         if _q_check_id.exists():
-            raise ValidationError("已经存在同类型的螺丝，编码：%s" % screw_id)
+            raise ValidationError("已经存在同类型的螺丝，编码：%s" % code)
         validated_data["name"] = name
-        validated_data["screw_id"] = screw_id
+        validated_data["code"] = code
         return self.Meta.model.objects.create(**validated_data)
 
     @classmethod
@@ -308,15 +308,15 @@ class ScrewSerializer(serializers.ModelSerializer):
         name = "%s%s%sX%s %s %s %s" % (name_dic["material"], name_dic["head_type"], str(validated_data["diameter"]), \
                                        str(validated_data["length"]), name_dic["tooth_type"], \
                                        name_dic["finish"], name_dic["slot_type"])
-        screw_id = "M%sX%s%s-%s-%s-%s[%s]" % (str(validated_data["diameter"]), str(validated_data["length"]), \
+        code = "M%sX%s%s-%s-%s-%s[%s]" % (str(validated_data["diameter"]), str(validated_data["length"]), \
                                               str(validated_data["material"]),  str(validated_data["head_type"]), \
                                               str(validated_data["tooth_type"]), str(validated_data["finish"]), \
                                               str(validated_data["slot_type"]))
-        _q_check_id = Screw.objects.filter(screw_id=screw_id)
+        _q_check_id = Screw.objects.filter(code=code)
         if _q_check_id.exists():
-            raise ValidationError("已经存在同类型的螺丝，编码：%s" % screw_id)
+            raise ValidationError("已经存在同类型的螺丝，编码：%s" % code)
         validated_data["name"] = name
-        validated_data["screw_id"] = screw_id
+        validated_data["code"] = code
         validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance

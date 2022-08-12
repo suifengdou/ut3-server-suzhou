@@ -59,6 +59,13 @@ INSTALLED_APPS = [
     'apps.bom.initialparts.apps.InitialpartsConfig',
     'apps.bom.standardlabrary.apps.StandardlabraryConfig',
     'apps.bom.subunit.apps.SubunitConfig',
+    'apps.bom.units.apps.UnitsConfig',
+    'apps.bom.middleparts.apps.MiddlepartsConfig',
+    'apps.bom.component.apps.ComponentConfig',
+    'apps.bom.goods.apps.GoodsConfig',
+    'apps.bom.handboard.apps.HandboardConfig',
+    'apps.bom.mould.apps.MouldConfig',
+    'apps.utils.geography.apps.GeographyConfig',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"

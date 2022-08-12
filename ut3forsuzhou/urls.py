@@ -23,18 +23,29 @@ route = DefaultRouter()
 from apps.auth.users.router import users_router
 from apps.auth.jobrole.router import jobrole_router
 from apps.auth.groups.router import group_router
+
 from apps.base.center.router import center_router
 from apps.base.company.router import company_router
 from apps.base.department.router import department_router
+
 from apps.supplier.handboardsup.router import handboardsup_router
 from apps.supplier.mouldsup.router import mouldsup_router
 from apps.supplier.packsup.router import packsup_router
 from apps.supplier.logisticssup.router import logistics_router
+
 from apps.bom.material.router import material_router
 from apps.bom.productline.router import productline_router
 from apps.bom.initialparts.router import initialparts_router
 from apps.bom.standardlabrary.router import screw_router
 from apps.bom.subunit.router import subunit_router
+from apps.bom.units.router import units_router
+from apps.bom.middleparts.router import middleparts_router
+from apps.bom.component.router import component_router
+from apps.bom.goods.router import goods_router
+from apps.bom.handboard.router import handboard_router
+from apps.bom.mould.router import mould_router
+
+from apps.utils.geography.router import geography_router
 
 
 # 账户权限
@@ -56,7 +67,14 @@ route.registry.extend(productline_router.registry)
 route.registry.extend(initialparts_router.registry)
 route.registry.extend(screw_router.registry)
 route.registry.extend(subunit_router.registry)
-
+route.registry.extend(units_router.registry)
+route.registry.extend(middleparts_router.registry)
+route.registry.extend(component_router.registry)
+route.registry.extend(goods_router.registry)
+route.registry.extend(handboard_router.registry)
+route.registry.extend(mould_router.registry)
+# UTILS
+route.registry.extend(geography_router.registry)
 
 urlpatterns = [
     url(r'^', include(route.urls)),

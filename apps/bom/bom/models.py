@@ -8,7 +8,7 @@ from apps.bom.units.models import UnitsVersion
 class BOM(models.Model):
 
     name = models.CharField(max_length=50, unique=True, verbose_name='BOM', help_text='BOM')
-    bom_id = models.CharField(max_length=50, unique=True, verbose_name='BOM编码', help_text='BOM编码')
+    code = models.CharField(max_length=50, unique=True, verbose_name='BOM编码', help_text='BOM编码')
     units = models.OneToOneField(UnitsVersion, on_delete=models.CASCADE, verbose_name='整机', help_text='整机')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
@@ -29,7 +29,7 @@ class BOMVersion(models.Model):
 
     name = models.CharField(max_length=60, unique=True, verbose_name='版本号名', help_text='版本号名')
     number = models.IntegerField(null=True, blank=True, verbose_name='版本', help_text='版本')
-    version_id = models.IntegerField(null=True, blank=True, verbose_name='版本编码', help_text='版本编码')
+    code = models.IntegerField(null=True, blank=True, verbose_name='版本编码', help_text='版本编码')
     bom = models.ForeignKey(BOM, on_delete=models.CASCADE, verbose_name='BOM', help_text='BOM')
 
     is_default = models.BooleanField(default=False, verbose_name='是否默认', help_text='是否默认')

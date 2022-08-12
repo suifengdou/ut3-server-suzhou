@@ -4,9 +4,9 @@ from rest_framework import viewsets, mixins, response
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UnitsSerializer, UnitsVersionSerializer
-from .filters import UnitsFilter, UnitsVersionFilter
-from .models import Units, UnitsVersion
+from .serializers import UnitsSerializer, UnitsVersionSerializer, UnitsVersionDetailsSerializer
+from .filters import UnitsFilter, UnitsVersionFilter, UnitsVersionDetailsFilter
+from .models import Units, UnitsVersion, UnitsVersionDetails
 from ut3forsuzhou.permissions import Permissions
 import oss2
 from rest_framework.decorators import action
@@ -65,4 +65,28 @@ class UnitsVersionViewset(viewsets.ModelViewSet):
         "GET": ['company.view_company']
     }
 
+
+class UnitsVersionDetailsViewset(viewsets.ModelViewSet):
+    """
+    retrieve:
+        返回指定公司
+    list:
+        返回公司列表
+    update:
+        更新公司信息
+    destroy:
+        删除公司信息
+    create:
+        创建公司信息
+    partial_update:
+        更新部分公司字段
+    """
+    queryset = UnitsVersionDetails.objects.all().order_by("id")
+    serializer_class = UnitsVersionDetailsSerializer
+    filter_class = UnitsVersionDetailsFilter
+    filter_fields = "__all__"
+    permission_classes = (IsAuthenticated, Permissions)
+    extra_perm_map = {
+        "GET": ['company.view_company']
+    }
 

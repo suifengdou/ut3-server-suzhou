@@ -13,7 +13,7 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
-from .models import HandBoard, LogHandBoard
+from .models import HandBoard, HandBoardDetails
 
 
 class HandBoardSerializer(serializers.ModelSerializer):
@@ -186,4 +186,72 @@ class HandBoardSerializer(serializers.ModelSerializer):
         return instance
 
 
+class HandBoardDetailsSerializer(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    last_login = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+
+    class Meta:
+        model = HandBoardDetails
+        fields = "__all__"
+
+    def get_handboard(self, instance):
+        try:
+            ret = {
+                "id": instance.handboard.id,
+                "name": instance.handboard.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def get_handboardsupplier(self, instance):
+        try:
+            ret = {
+                "id": instance.handboardsupplier.id,
+                "name": instance.handboardsupplier.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def get_initial_parts(self, instance):
+        try:
+            ret = {
+                "id": instance.initial_parts.id,
+                "name": instance.initial_parts.name
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def to_representation(self, instance):
+        ret = super(HandBoardDetailsSerializer, self).to_representation(instance)
+        ret["handboard"] = self.get_handboard(instance)
+        ret["handboardsupplier"] = self.get_handboardsupplier(instance)
+        ret["initial_parts"] = self.get_initial_parts(instance)
+        return ret
+
+    def create(self, validated_data):
+        user = self.context["request"].user
+        validated_data["creator"] = user
+        work_order = self.Meta.model.objects.create(**validated_data)
+
+        return work_order
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        created_time = validated_data.pop("created_time", "")
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+
+        return instance
 

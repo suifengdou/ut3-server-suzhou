@@ -50,7 +50,7 @@ class SubUnitViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         if not self.request:
             return SubUnit.objects.none()
-        queryset = SubUnit.objects.filter(order_status=1).order_by("id")
+        queryset = SubUnit.objects.all().order_by("id")
         return queryset
 
     @action(methods=['patch'], detail=False)
@@ -446,7 +446,7 @@ class SubUnitVersionViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         if not self.request:
             return SubUnitVersion.objects.none()
-        queryset = SubUnitVersion.objects.filter(order_status=1).order_by("id")
+        queryset = SubUnitVersion.objects.all().order_by("id")
         return queryset
 
     @action(methods=['patch'], detail=False)

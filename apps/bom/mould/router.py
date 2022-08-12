@@ -1,7 +1,9 @@
 from rest_framework.routers import DefaultRouter
-from .views import MaterialViewset
+from .views import MouldViewset, MouldVersionViewset, MouldVersionDetailsViewset
 
 
-department_router = DefaultRouter()
-department_router.register(r'bom/material', MaterialViewset, basename='material')
+mould_router = DefaultRouter()
+mould_router.register(r'bom/mould/mould', MouldViewset, basename='mould')
+mould_router.register(r'bom/mould/mouldversion', MouldVersionViewset, basename='mouldversion')
+mould_router.register(r'bom/mould/mouldversiondetails', MouldVersionDetailsViewset, basename='mouldversiondetails')
 

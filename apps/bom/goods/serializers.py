@@ -1,16 +1,16 @@
 import datetime
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from .models import ComponentCategory, Component, ComponentVersion, ComponentVersionDetails
+from .models import AtomicParts, AtomicPartsVersion, Goods, GoodsDetails
 
 
-class ComponentCategorySerializer(serializers.ModelSerializer):
+class AtomicPartsSerializer(serializers.ModelSerializer):
 
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
 
     class Meta:
-        model = ComponentCategory
+        model = AtomicParts
         fields = "__all__"
 
     def get_creator(self, instance):
@@ -23,31 +23,24 @@ class ComponentCategorySerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "无"}
         return ret
 
-    def get_subunit_category(self, instance):
-        subunit_category_list = {
-            1: '主机',
-            2: '附件',
-        }
+    def get_middleparts(self, instance):
         try:
             ret = {
-                "id": instance.subunit_category,
-                "name": subunit_category_list.get(instance.subunit_category, None)
+                "id": instance.middleparts.id,
+                "name": instance.middleparts.name,
             }
         except:
-            ret = {
-                "id": -1,
-                "name": "空"
-            }
+            ret = {"id": -1, "name": "无"}
         return ret
 
     def to_representation(self, instance):
-        ret = super(ComponentCategorySerializer, self).to_representation(instance)
-        ret['creator'] = self.get_creator(instance)
-        ret['subunit_category'] = self.get_subunit_category(instance)
+        ret = super(AtomicPartsSerializer, self).to_representation(instance)
+        ret["creator"] = self.get_creator(instance)
+        ret["middleparts"] = self.get_middleparts(instance)
         return ret
 
     def create(self, validated_data):
-        validated_data["creator"] = self.context["request"].user
+        validated_data["creator"] = self.context["request"].user.username
         return self.Meta.model.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
@@ -56,13 +49,69 @@ class ComponentCategorySerializer(serializers.ModelSerializer):
         return instance
 
 
-class ComponentSerializer(serializers.ModelSerializer):
+class AtomicPartsVersionSerializer(serializers.ModelSerializer):
 
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
 
     class Meta:
-        model = Component
+        model = AtomicPartsVersion
+        fields = "__all__"
+
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_atomic_parts(self, instance):
+        try:
+            ret = {
+                "id": instance.atomic_parts.id,
+                "name": instance.atomic_parts.name,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_middlepartsversion(self, instance):
+        try:
+            ret = {
+                "id": instance.middlepartsversion.id,
+                "name": instance.middlepartsversion.name,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def to_representation(self, instance):
+        ret = super(AtomicPartsVersionSerializer, self).to_representation(instance)
+        ret["creator"] = self.get_creator(instance)
+        ret["atomic_parts"] = self.get_atomic_parts(instance)
+        ret["middlepartsversion"] = self.get_middlepartsversion(instance)
+        return ret
+
+    def create(self, validated_data):
+        validated_data["creator"] = self.context["request"].user.username
+        return self.Meta.model.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        return instance
+
+
+class GoodsSerializer(serializers.ModelSerializer):
+
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
+
+    class Meta:
+        model = Goods
         fields = "__all__"
 
     def get_creator(self, instance):
@@ -76,19 +125,24 @@ class ComponentSerializer(serializers.ModelSerializer):
         return ret
 
     def get_category(self, instance):
+        category_list = {
+            1: '原子',
+            2: '单元',
+            3: '套件',
+        }
         try:
             ret = {
                 "id": instance.category.id,
-                "name": instance.category.name,
+                "name": category_list.get(instance.category.id, None),
             }
         except:
             ret = {"id": -1, "name": "无"}
         return ret
 
     def to_representation(self, instance):
-        ret = super(ComponentSerializer, self).to_representation(instance)
-        ret['creator'] = self.get_creator(instance)
-        ret['category'] = self.get_category(instance)
+        ret = super(GoodsSerializer, self).to_representation(instance)
+        ret["creator"] = self.get_creator(instance)
+        ret["category"] = self.get_category(instance)
         return ret
 
     def create(self, validated_data):
@@ -101,13 +155,13 @@ class ComponentSerializer(serializers.ModelSerializer):
         return instance
 
 
-class ComponentVersionSerializer(serializers.ModelSerializer):
+class GoodsDetailsSerializer(serializers.ModelSerializer):
 
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
 
     class Meta:
-        model = ComponentVersion
+        model = GoodsDetails
         fields = "__all__"
 
     def get_creator(self, instance):
@@ -120,20 +174,31 @@ class ComponentVersionSerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "无"}
         return ret
 
-    def get_component(self, instance):
+    def get_parts(self, instance):
         try:
             ret = {
-                "id": instance.component.id,
-                "name": instance.component.name,
+                "id": instance.parts.id,
+                "name": instance.parts.name,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_atomic_parts(self, instance):
+        try:
+            ret = {
+                "id": instance.atomic_parts.id,
+                "name": instance.atomic_parts.name,
             }
         except:
             ret = {"id": -1, "name": "无"}
         return ret
 
     def to_representation(self, instance):
-        ret = super(ComponentVersionSerializer, self).to_representation(instance)
-        ret['creator'] = self.get_creator(instance)
-        ret['component'] = self.get_component(instance)
+        ret = super(GoodsDetailsSerializer, self).to_representation(instance)
+        ret["creator"] = self.get_creator(instance)
+        ret["parts"] = self.get_parts(instance)
+        ret["atomic_parts"] = self.get_atomic_parts(instance)
         return ret
 
     def create(self, validated_data):
@@ -144,64 +209,3 @@ class ComponentVersionSerializer(serializers.ModelSerializer):
         validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
-
-
-class ComponentVersionDetailsSerializer(serializers.ModelSerializer):
-
-    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="创建时间", help_text="创建时间")
-    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True, label="更新时间", help_text="更新时间")
-
-    class Meta:
-        model = ComponentVersionDetails
-        fields = "__all__"
-
-    def get_creator(self, instance):
-        try:
-            ret = {
-                "id": instance.creator.id,
-                "name": instance.creator.username,
-            }
-        except:
-            ret = {"id": -1, "name": "无"}
-        return ret
-
-    def get_version(self, instance):
-        try:
-            ret = {
-                "id": instance.version.id,
-                "name": instance.version.name,
-            }
-        except:
-            ret = {"id": -1, "name": "无"}
-        return ret
-
-    def get_details(self, instance):
-        try:
-            ret = {
-                "id": instance.details.id,
-                "name": instance.details.name,
-            }
-        except:
-            ret = {"id": -1, "name": "无"}
-        return ret
-
-    def to_representation(self, instance):
-        ret = super(ComponentVersionDetailsSerializer, self).to_representation(instance)
-        ret['creator'] = self.get_creator(instance)
-        ret['version'] = self.get_version(instance)
-        ret['details'] = self.get_details(instance)
-        return ret
-
-    def create(self, validated_data):
-        validated_data["creator"] = self.context["request"].user.username
-        return self.Meta.model.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        validated_data["updated_time"] = datetime.datetime.now()
-        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
-        return instance
-
-
-
-
-

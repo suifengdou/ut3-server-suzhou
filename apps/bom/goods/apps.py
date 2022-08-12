@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class GeographyConfig(AppConfig):
+class GoodsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.utils.geography'
+    name = 'apps.bom.goods'

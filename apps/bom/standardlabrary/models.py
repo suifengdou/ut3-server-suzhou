@@ -119,7 +119,7 @@ class Screw(models.Model):
     )
 
     name = models.CharField(null=True, blank=True, max_length=120, verbose_name='螺丝名称', help_text='螺丝名称')
-    screw_id = models.CharField(max_length=90, unique=True, null=True, blank=True, verbose_name='螺丝编码', help_text='螺丝编码')
+    code = models.CharField(max_length=90, unique=True, null=True, blank=True, verbose_name='螺丝编码', help_text='螺丝编码')
     material = models.CharField(choices=MATERIAL_LIST, max_length=10, verbose_name='材质', help_text='材质')
     diameter = models.IntegerField(verbose_name='牙径', help_text='牙径')
     length = models.IntegerField(verbose_name='长度', help_text='长度')
