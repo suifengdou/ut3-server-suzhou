@@ -13,73 +13,227 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
-from .models import SubUnitProject, SubUnitProjectDetails
+from .models import SubUnitProject, SUPFiles, LogSubUnitProject
+from apps.utils.logging.loggings import logging
 
 
 class SubUnitProjectSerializer(serializers.ModelSerializer):
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    component_details = serializers.JSONField(required=False)
 
     class Meta:
         model = SubUnitProject
         fields = "__all__"
 
-    def get_shop(self, instance):
+    def get_creator(self, instance):
         try:
             ret = {
-                "id": instance.shop.id,
-                "name": instance.shop.name,
+                "id": instance.creator.id,
+                "name": instance.creator.username
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def get_product_line(self, instance):
+        try:
+            ret = {
+                "id": instance.product_line.id,
+                "name": instance.product_line.name,
             }
         except:
             ret = {"id": -1, "name": "显示错误"}
         return ret
 
+    def get_unit_project(self, instance):
+        try:
+            ret = {
+                "id": instance.unit_project.id,
+                "name": instance.unit_project.name.name,
+                "nationality": instance.unit_project.name.units.nationality.name,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_subunits_version(self, instance):
+        try:
+            ret = {
+                "id": instance.subunits_version.id,
+                "name": instance.subunits_version.name,
+                "code": instance.subunits_version.code,
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_mistake_tag(self, instance):
+        mistake_list = {
+            0: '正常',
+            1: '产品线未定义组件类型',
+            2: '请修复原始整机项目单',
+            3: '生成整机出错',
+            4: '整机版本错误联系管理员进行初始化',
+            5: '整机版本创建错误',
+            6: '整机项目创建错误',
+        }
+        try:
+            ret = {
+                "id": instance.mistake_tag,
+                "name": mistake_list.get(instance.mistake_tag, None),
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_type(self, instance):
+        type_list = {
+            1: '主机',
+            2: '附件',
+        }
+        try:
+            ret = {
+                "id": instance.type,
+                "name": type_list.get(instance.type, None),
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_category(self, instance):
+        category_list = {
+            1: '开发构建',
+            2: '版本迭代',
+        }
+        try:
+            ret = {
+                "id": instance.category,
+                "name": category_list.get(instance.category, None),
+            }
+        except:
+            ret = {"id": -1, "name": "无"}
+        return ret
+
+    def get_file_details(self, instance):
+        file_details = instance.supfiles_set.filter(is_delete=False)
+        ret = []
+        for file_detail in file_details:
+            if file_detail.suffix in ['png', 'jpg', 'gif', 'bmp', 'tif', 'svg', 'raw']:
+                is_pic = True
+            else:
+                is_pic = False
+            data = {
+                "id": file_detail.id,
+                "name": file_detail.name,
+                "suffix": file_detail.suffix,
+                "url": file_detail.url,
+                "url_list": [file_detail.url],
+                "is_pic": is_pic,
+                "creator": file_detail.creator.username,
+                "created_time": file_detail.created_time
+            }
+            ret.append(data)
+        return ret
+
+    def get_log_details(self, instance):
+        log_details = instance.logsubunitproject_set.filter(obj=instance).order_by("-id")
+        ret = []
+        for log_detail in log_details:
+            data = {
+                "id": log_detail.id,
+                "name": log_detail.name.username,
+                "content": log_detail.content,
+                "created_time": log_detail.created_time
+            }
+            ret.append(data)
+        return ret
+
+    def get_component_details(self, instance):
+        component_details = instance.componentproject_set.filter(subunits_project=instance, is_delete=False).order_by("-id")
+        ret = []
+        for component_detail in component_details:
+            data = {
+                "id": component_detail.id,
+                "name": component_detail.component_version.name,
+                "memo": component_detail.memo,
+                "created_time": component_detail.created_time
+            }
+            ret.append(data)
+        return ret
 
     def to_representation(self, instance):
             ret = super(SubUnitProjectSerializer, self).to_representation(instance)
+            ret['creator'] = self.get_creator(instance)
+            ret['product_line'] = self.get_product_line(instance)
+            ret['unit_project'] = self.get_unit_project(instance)
+            ret['subunits_version'] = self.get_subunits_version(instance)
+            ret['type'] = self.get_type(instance)
+            ret['mistake_tag'] = self.get_mistake_tag(instance)
+            ret['category'] = self.get_category(instance)
+            ret['file_details'] = self.get_file_details(instance)
+            ret['log_details'] = self.get_log_details(instance)
+            ret['component_details'] = self.get_component_details(instance)
             return ret
 
     def create(self, validated_data):
-        validated_data["creator"] = self.context["request"].user.username
+        validated_data["creator"] = self.context["request"].user
         return self.Meta.model.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
+        user = self.context["request"].user
         validated_data["updated_time"] = datetime.datetime.now()
-        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        component_old = instance.componentproject_set.filter(subunits_project=instance, is_delete=False)
+        component_new = validated_data["component_details"]
+        component_new_list = []
+        for obj in component_new:
+            component_new_list.append(obj.id)
+        for component_project in component_old:
+            if component_project.id not in component_new_list:
+                component_project.is_delete = True
+                component_project.save()
+                logging(instance, user, LogSubUnitProject, "删除了组项项目：%s" % component_project.component_version.name)
         return instance
 
 
-class SubUnitProjectDetailsSerializer(serializers.ModelSerializer):
+class SUPFilesSerializer(serializers.ModelSerializer):
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
 
     class Meta:
-        model = SubUnitProjectDetails
+        model = SUPFiles
         fields = "__all__"
 
-    def get_shop(self, instance):
+    def get_creator(self, instance):
         try:
             ret = {
-                "id": instance.shop.id,
-                "name": instance.shop.name,
+                "id": instance.creator.id,
+                "name": instance.creator.username
             }
         except:
-            ret = {"id": -1, "name": "显示错误"}
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
         return ret
 
-
     def to_representation(self, instance):
-            ret = super(SubUnitProjectDetailsSerializer, self).to_representation(instance)
+            ret = super(SUPFilesSerializer, self).to_representation(instance)
+            ret['creator'] = self.get_creator(instance)
             return ret
 
     def create(self, validated_data):
-        validated_data["creator"] = self.context["request"].user.username
+        validated_data["creator"] = self.context["request"].user
         return self.Meta.model.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         validated_data["updated_time"] = datetime.datetime.now()
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
+
 
 
 

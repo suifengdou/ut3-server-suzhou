@@ -76,6 +76,7 @@ class Goods(models.Model):
     code = models.CharField(max_length=50, unique=True, verbose_name='货品编码', help_text='货品编码')
     category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='货品类型', help_text='货品类型')
     is_atom = models.BooleanField(default=False, verbose_name='是否原子件', help_text='是否原子件')
+    is_stop = models.BooleanField(default=False, verbose_name='是否停产', help_text='是否停产')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')

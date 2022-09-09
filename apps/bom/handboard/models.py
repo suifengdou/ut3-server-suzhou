@@ -41,7 +41,7 @@ class HandBoardDetails(models.Model):
     handboardsupplier = models.ForeignKey(HandBoardSupplier, on_delete=models.CASCADE, verbose_name='手板供应商', help_text='手板供应商')
     initial_parts = models.ForeignKey(InitialParts, on_delete=models.CASCADE, verbose_name='初始物料', help_text='初始物料')
     is_handboard = models.BooleanField(default=False, verbose_name='是否制板', help_text='是否制板')
-    quantity = models.IntegerField(default=1, verbose_name='用量', help_text='用量')
+    quantity = models.IntegerField(default=1, verbose_name='数量', help_text='数量')
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

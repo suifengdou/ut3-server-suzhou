@@ -7,7 +7,7 @@
 
 import django_filters
 from django_filters.filters import BaseInFilter, NumberFilter
-from .models import SubUnitProject, SubUnitProjectDetails
+from .models import SubUnitProject, SUPFiles
 
 
 class NumberInFilter(BaseInFilter, NumberFilter):
@@ -24,13 +24,11 @@ class SubUnitProjectFilter(django_filters.FilterSet):
         fields = "__all__"
 
 
-class SubUnitProjectDetailsFilter(django_filters.FilterSet):
+class SUPFilesFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
-    level__in = NumberInFilter(field_name="level", lookup_expr="in")
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = SubUnitProjectDetails
+        model = SUPFiles
         fields = "__all__"
-
 

@@ -86,7 +86,7 @@ class ScrewSubmitViewset(viewsets.ModelViewSet):
                     obj.mistake_tag = 1
                     obj.save()
                     continue
-                _q_initial_part = InitialParts.objects.filter(ip_id=obj.code)
+                _q_initial_part = InitialParts.objects.filter(code=obj.code)
                 if _q_initial_part.exists():
                     data["error"].append("%s已存在此编码物料，无法创建" % obj.id)
                     n -= 1
@@ -105,7 +105,7 @@ class ScrewSubmitViewset(viewsets.ModelViewSet):
                     continue
 
                 order.name = obj.name
-                order.ip_id = obj.code
+                order.code = obj.code
                 order.specification = obj.name.split(" ")[0]
                 if obj.heat_treated:
                     order.technology ="%s %s" % (obj.name[len(order.specification):len(obj.name)], heat_treated_list.get(obj.heat_treated, None))
@@ -160,7 +160,7 @@ class ScrewSubmitViewset(viewsets.ModelViewSet):
                     obj.order_status = 2
                     obj.save()
                     continue
-                _q_initial_part = InitialParts.objects.filter(ip_id=obj.code)
+                _q_initial_part = InitialParts.objects.filter(code=obj.code)
                 if _q_initial_part.exists():
                     obj.initial_parts = _q_initial_part[0]
                     obj.order_status = 2

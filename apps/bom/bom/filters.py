@@ -6,7 +6,7 @@
 # @Software: PyCharm
 
 import django_filters
-from .models import BOM, BOMVersion, BOMVersionDetails
+from .models import BOM, BOMDetails
 
 
 class BOMFilter(django_filters.FilterSet):
@@ -18,20 +18,11 @@ class BOMFilter(django_filters.FilterSet):
         fields = "__all__"
 
 
-class BOMVersionFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
-    created_time = django_filters.DateTimeFromToRangeFilter()
-
-    class Meta:
-        model = BOMVersion
-        fields = "__all__"
-
-
-class BOMVersionDetailsFilter(django_filters.FilterSet):
+class BOMDetailsFilter(django_filters.FilterSet):
     atomic_parts__name = django_filters.CharFilter(lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = BOMVersionDetails
+        model = BOMDetails
         fields = "__all__"
 

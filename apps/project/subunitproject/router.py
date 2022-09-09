@@ -1,8 +1,11 @@
 from rest_framework.routers import DefaultRouter
-from .views import UserViewset, DashboardViewset
+from .views import SubUnitProjectViewset, SubUnitProjectPrepareViewset, SUPFilesViewset, SubUnitProjectDevelopViewset
 
 
-users_router = DefaultRouter()
-users_router.register(r'auth/users/users', UserViewset, basename='users')
-users_router.register(r'auth/users/dashboard', DashboardViewset, basename='dashboard')
+subunitproject_router = DefaultRouter()
+subunitproject_router.register(r'project/subunitproject/subunitprojectprepare', SubUnitProjectPrepareViewset, basename='subunitprojectprepare')
+subunitproject_router.register(r'project/subunitproject/subunitprojectdevelop', SubUnitProjectDevelopViewset, basename='subunitprojectdevelop')
+subunitproject_router.register(r'project/subunitproject/subunitproject', SubUnitProjectViewset, basename='subunitproject')
+subunitproject_router.register(r'project/subunitproject/supfiles', SUPFilesViewset, basename='supfiles')
+
 

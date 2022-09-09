@@ -6,7 +6,7 @@
 # @Software: PyCharm
 
 import django_filters
-from .models import ComponentCategory, Component, ComponentVersion, ComponentVersionDetails
+from .models import ComponentCategory, Component, ComponentVersion
 
 
 class ComponentCategoryFilter(django_filters.FilterSet):
@@ -36,13 +36,6 @@ class ComponentVersionFilter(django_filters.FilterSet):
         fields = "__all__"
 
 
-class ComponentVersionDetailsFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
-    created_time = django_filters.DateTimeFromToRangeFilter()
-
-    class Meta:
-        model = ComponentVersionDetails
-        fields = "__all__"
 
 
 

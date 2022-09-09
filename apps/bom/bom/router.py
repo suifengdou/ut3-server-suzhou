@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
-from .views import MaterialViewset
+from .views import BOMViewset, BOMDetailsViewset
 
 
-department_router = DefaultRouter()
-department_router.register(r'bom/material', MaterialViewset, basename='material')
+bom_router = DefaultRouter()
+bom_router.register(r'bom/bom/bom', BOMViewset, basename='bom')
+bom_router.register(r'bom/bom/bomdetails', BOMDetailsViewset, basename='bomdetails')
 

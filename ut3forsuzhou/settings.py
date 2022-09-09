@@ -65,7 +65,12 @@ INSTALLED_APPS = [
     'apps.bom.goods.apps.GoodsConfig',
     'apps.bom.handboard.apps.HandboardConfig',
     'apps.bom.mould.apps.MouldConfig',
+    'apps.bom.bom.apps.BomConfig',
+    'apps.bom.productcore.apps.ProductcoreConfig',
     'apps.utils.geography.apps.GeographyConfig',
+    'apps.project.unitsproject.apps.UnitsprojectConfig',
+    'apps.project.subunitproject.apps.SubunitprojectConfig',
+    'apps.project.componentproject.apps.ComponentprojectConfig',
 ]
 
 AUTH_USER_MODEL = "users.UserProfile"
@@ -231,10 +236,9 @@ CORS_ALLOW_CREDENTIALS = True
 EXPORT_TOPLIMIT = 2000
 
 OSS_CONFIG = {
-    "AccessKeyId": "LTAI5tPX7E9aMFzvisMBxHGW",
-    "AccessKeySecret": "36IqhbpJ82ljnDcw450mGR0KBm0wYZ",
-    "cname": "http://file.xgdqsn.com",
+    "AccessKeyId": "LTAI5tJKXfAEPpae8cQ7qMQh",
+    "AccessKeySecret": "vV2NvGCYUpFTln6Z3sFKIErIzbDmYK",
+    "cname": "http://ut3s2.oss-cn-beijing.aliyuncs.com",
     "bucket_name": "ut3s2",
     "endpoint": "http://oss-cn-beijing.aliyuncs.com"
 }
-

@@ -44,8 +44,14 @@ from apps.bom.component.router import component_router
 from apps.bom.goods.router import goods_router
 from apps.bom.handboard.router import handboard_router
 from apps.bom.mould.router import mould_router
+from apps.bom.bom.router import bom_router
+from apps.bom.productcore.router import productcore_router
 
 from apps.utils.geography.router import geography_router
+
+from apps.project.unitsproject.router import unitproject_router
+from apps.project.subunitproject.router import subunitproject_router
+from apps.project.componentproject.router import componentproject_router
 
 
 # 账户权限
@@ -73,8 +79,14 @@ route.registry.extend(component_router.registry)
 route.registry.extend(goods_router.registry)
 route.registry.extend(handboard_router.registry)
 route.registry.extend(mould_router.registry)
+route.registry.extend(bom_router.registry)
+route.registry.extend(productcore_router.registry)
 # UTILS
 route.registry.extend(geography_router.registry)
+# PROJECT
+route.registry.extend(unitproject_router.registry)
+route.registry.extend(subunitproject_router.registry)
+route.registry.extend(componentproject_router.registry)
 
 urlpatterns = [
     url(r'^', include(route.urls)),
