@@ -6,7 +6,7 @@ import pandas as pd
 from apps.auth.users.models import UserProfile
 from apps.bom.subunit.models import SubUnitVersion
 from apps.bom.component.models import ComponentVersion
-from apps.project.unitsproject.models import UnitProject
+from apps.project.unitproject.models import UnitProject
 
 
 class SubUnitProject(models.Model):
@@ -24,9 +24,10 @@ class SubUnitProject(models.Model):
         (1, '子项项目必须标记才可确认'),
         (2, '产品线未查询到预制组件类型'),
         (3, '请检查错误，修复问题后，选择修复单据'),
-        (4, '理赔必须设置需理赔才可以审核'),
-        (5, '驳回原因为空'),
-        (6, '无反馈内容, 不可以审核'),
+        (4, '存在空组项'),
+        (5, '存在未递交原初物料'),
+        (6, '创建手板项目失败'),
+        (7, '创建手板项目明细失败'),
     )
     PROCESSTAG = (
         (0, '未处理'),
@@ -44,6 +45,8 @@ class SubUnitProject(models.Model):
         (1, '开发构建'),
         (2, '版本变更'),
     )
+    name = models.CharField(unique=True, max_length=90, verbose_name='子项项目名', db_index=True, help_text='子项项目名')
+    code = models.CharField(max_length=50, unique=True, verbose_name='子项项目名', help_text='子项项目名')
     category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
     subunits_version = models.OneToOneField(SubUnitVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项版本', help_text='子项版本')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品线', help_text='产品线')

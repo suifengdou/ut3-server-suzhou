@@ -13,13 +13,14 @@ from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.exceptions import ValidationError
 from rest_framework import status
-from .models import ComponentProject
+from .models import ComponentProject, CPFiles
 User = get_user_model()
 
 
 class ComponentProjectSerializer(serializers.ModelSerializer):
     created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    initial_parts_details = serializers.JSONField(required=False)
 
     class Meta:
         model = ComponentProject
@@ -48,15 +49,15 @@ class ComponentProjectSerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "显示错误"}
         return ret
 
-    def get_subunits_project(self, instance):
+    def get_subunit_project(self, instance):
         try:
             ret = {
-                "id": instance.subunits_project.id,
-                "subunit_name": instance.subunits_project.subunits_version.name,
-                "subunit_code": instance.subunits_project.subunits_version.code,
-                "unit_code": instance.subunits_project.unit_project.name.code,
+                "id": instance.subunit_project.id,
+                "subunit_name": instance.subunit_project.name,
+                "subunit_code": instance.subunit_project.code,
+                "unit_code": instance.subunit_project.unit_project.units_version.code,
             }
-        except:
+        except Exception as e:
             ret = {"id": -1, "name": "显示错误"}
         return ret
 
@@ -95,14 +96,28 @@ class ComponentProjectSerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "无"}
         return ret
 
+    def get_initial_parts_details(self, instance):
+        initial_parts_details = instance.initialpartproject_set.filter(component_project=instance, is_delete=False).order_by("-id")
+        ret = []
+        for initial_parts_detail in initial_parts_details:
+            data = {
+                "id": initial_parts_detail.id,
+                "name": initial_parts_detail.name,
+                "code": initial_parts_detail.code,
+                "created_time": initial_parts_detail.created_time
+            }
+            ret.append(data)
+        return ret
+
     def to_representation(self, instance):
             ret = super(ComponentProjectSerializer, self).to_representation(instance)
             ret['creator'] = self.get_creator(instance)
             ret['product_line'] = self.get_product_line(instance)
-            ret['subunits_project'] = self.get_subunits_project(instance)
+            ret['subunit_project'] = self.get_subunit_project(instance)
             ret['component_version'] = self.get_component_version(instance)
             ret['component_category'] = self.get_component_category(instance)
             ret['category'] = self.get_category(instance)
+            ret['initial_parts_details'] = self.get_initial_parts_details(instance)
             return ret
 
     def create(self, validated_data):
@@ -114,6 +129,41 @@ class ComponentProjectSerializer(serializers.ModelSerializer):
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
         return instance
 
+
+class CPFilesSerializer(serializers.ModelSerializer):
+    created_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+    updated_time = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+
+    class Meta:
+        model = CPFiles
+        fields = "__all__"
+
+    def get_creator(self, instance):
+        try:
+            ret = {
+                "id": instance.creator.id,
+                "name": instance.creator.username
+            }
+        except:
+            ret = {
+                "id": -1,
+                "name": "空"
+            }
+        return ret
+
+    def to_representation(self, instance):
+            ret = super(CPFilesSerializer, self).to_representation(instance)
+            ret['creator'] = self.get_creator(instance)
+            return ret
+
+    def create(self, validated_data):
+        validated_data["creator"] = self.context["request"].user
+        return self.Meta.model.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data["updated_time"] = datetime.datetime.now()
+        self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        return instance
 
 
 

@@ -6,9 +6,7 @@ import pandas as pd
 from apps.auth.users.models import UserProfile
 from apps.bom.subunit.models import SubUnitVersion
 from apps.bom.component.models import ComponentVersion
-from apps.project.handboardexecuteproject.models import HandBoardExecuteProject
 from apps.bom.initialparts.models import InitialParts
-from apps.supplier.handboardsup.models import HandBoardSupplier
 
 
 class HandBoardExecuteStatement(models.Model):
@@ -44,7 +42,7 @@ class HandBoardExecuteStatement(models.Model):
     )
     name = models.CharField(max_length=50, unique=True, verbose_name='手板结算单名', help_text='手板结算单名')
     units_id = models.CharField(max_length=50, unique=True, verbose_name='手板结算号', help_text='手板结算号')
-    project = models.ForeignKey(HandBoardExecuteProject, on_delete=models.CASCADE, null=True, blank=True, verbose_name='原单', help_text='原单')
+    project = models.ForeignKey(InitialParts, on_delete=models.CASCADE, null=True, blank=True, verbose_name='原单', help_text='原单')
     supplier = models.ForeignKey(HandBoardSupplier, on_delete=models.CASCADE, verbose_name='供应商', help_text='供应商')
     quantity = models.IntegerField(default=0, verbose_name='总数量', help_text='总数量')
     amount = models.FloatField(default=0, verbose_name='金额', help_text='总金额')

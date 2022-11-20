@@ -53,8 +53,8 @@ class SubUnitProjectSerializer(serializers.ModelSerializer):
         try:
             ret = {
                 "id": instance.unit_project.id,
-                "name": instance.unit_project.name.name,
-                "nationality": instance.unit_project.name.units.nationality.name,
+                "name": instance.unit_project.name,
+                "nationality": instance.unit_project.units_version.units.nationality.name,
             }
         except:
             ret = {"id": -1, "name": "无"}
@@ -118,49 +118,15 @@ class SubUnitProjectSerializer(serializers.ModelSerializer):
             ret = {"id": -1, "name": "无"}
         return ret
 
-    def get_file_details(self, instance):
-        file_details = instance.supfiles_set.filter(is_delete=False)
-        ret = []
-        for file_detail in file_details:
-            if file_detail.suffix in ['png', 'jpg', 'gif', 'bmp', 'tif', 'svg', 'raw']:
-                is_pic = True
-            else:
-                is_pic = False
-            data = {
-                "id": file_detail.id,
-                "name": file_detail.name,
-                "suffix": file_detail.suffix,
-                "url": file_detail.url,
-                "url_list": [file_detail.url],
-                "is_pic": is_pic,
-                "creator": file_detail.creator.username,
-                "created_time": file_detail.created_time
-            }
-            ret.append(data)
-        return ret
-
-    def get_log_details(self, instance):
-        log_details = instance.logsubunitproject_set.filter(obj=instance).order_by("-id")
-        ret = []
-        for log_detail in log_details:
-            data = {
-                "id": log_detail.id,
-                "name": log_detail.name.username,
-                "content": log_detail.content,
-                "created_time": log_detail.created_time
-            }
-            ret.append(data)
-        return ret
-
     def get_component_details(self, instance):
-        component_details = instance.componentproject_set.filter(subunits_project=instance, is_delete=False).order_by("-id")
+        component_details = instance.componentproject_set.filter(subunit_project=instance, is_delete=False).order_by("-id")
         ret = []
         for component_detail in component_details:
             data = {
                 "id": component_detail.id,
                 "name": component_detail.component_version.name,
                 "memo": component_detail.memo,
-                "created_time": component_detail.created_time
+                "created_time": '{:%Y-%m-%d %H:%M:%S}'.format(component_detail.created_time)
             }
             ret.append(data)
         return ret
@@ -174,8 +140,6 @@ class SubUnitProjectSerializer(serializers.ModelSerializer):
             ret['type'] = self.get_type(instance)
             ret['mistake_tag'] = self.get_mistake_tag(instance)
             ret['category'] = self.get_category(instance)
-            ret['file_details'] = self.get_file_details(instance)
-            ret['log_details'] = self.get_log_details(instance)
             ret['component_details'] = self.get_component_details(instance)
             return ret
 
@@ -186,7 +150,10 @@ class SubUnitProjectSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         user = self.context["request"].user
         validated_data["updated_time"] = datetime.datetime.now()
-        component_old = instance.componentproject_set.filter(subunits_project=instance, is_delete=False)
+
+        component_old = instance.componentproject_set.all()
+        if component_old.filter(order_status__in=[2, 3, 4, 5, 6]):
+            raise ValidationError({"更改错误": "组件已存在开发状态，不可更改"})
         component_new = validated_data["component_details"]
         component_new_list = []
         for obj in component_new:

@@ -13,7 +13,7 @@ class Units(models.Model):
     is_named = models.BooleanField(default=False, verbose_name='是否命名', help_text='是否命名')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品线', help_text='产品线')
     nationality = models.ForeignKey(Nationality, on_delete=models.CASCADE, verbose_name='国别', help_text='国别')
-    serial_number = models.IntegerField(null=True, blank=True, unique=True, verbose_name='系列排序', help_text='系列排序')
+    serial_number = models.IntegerField(null=True, blank=True, verbose_name='系列排序', help_text='系列排序')
     unit_number = models.IntegerField(null=True, blank=True, unique=True, verbose_name='整机排序', help_text='整机排序')
 
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')

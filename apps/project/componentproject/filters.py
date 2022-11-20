@@ -7,7 +7,7 @@
 
 import django_filters
 from django_filters.filters import BaseInFilter, NumberFilter
-from .models import ComponentProject
+from .models import ComponentProject, CPFiles
 
 
 class NumberInFilter(BaseInFilter, NumberFilter):
@@ -15,10 +15,19 @@ class NumberInFilter(BaseInFilter, NumberFilter):
 
 
 class ComponentProjectFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr='icontains')
+    component_version__name = django_filters.CharFilter(lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
         model = ComponentProject
+        fields = "__all__"
+
+
+class CPFilesFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    created_time = django_filters.DateTimeFromToRangeFilter()
+
+    class Meta:
+        model = CPFiles
         fields = "__all__"
 

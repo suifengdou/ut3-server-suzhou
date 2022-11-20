@@ -22,7 +22,7 @@ class ComponentProject(models.Model):
     )
     MISTAKE_LIST = (
         (0, '正常'),
-        (1, '快递单号错误'),
+        (1, '未标记单据不可审核'),
         (2, '处理意见为空'),
         (3, '返回的单据无返回单号'),
         (4, '理赔必须设置需理赔才可以审核'),
@@ -30,23 +30,20 @@ class ComponentProject(models.Model):
         (6, '无反馈内容, 不可以审核'),
     )
     PROCESSTAG = (
-        (0, '未分类'),
-        (1, '待截单'),
-        (2, '签复核'),
-        (3, '改地址'),
-        (4, '催派查'),
-        (5, '丢件核'),
-        (6, '纠纷中'),
-        (7, '需理赔'),
-        (8, '其他类'),
+        (0, '未处理'),
+        (1, '确认开发'),
+        (2, '确认更新'),
+        (3, '确认组项'),
     )
 
     CATEGORY_LIST = (
         (1, '开发构建'),
         (2, '版本变更'),
     )
+    name = models.CharField(unique=True, max_length=90, verbose_name='组项项目名', db_index=True, help_text='组项项目名')
+    code = models.CharField(max_length=50, unique=True, verbose_name='组项项目编码', help_text='组项项目编码')
     category = models.SmallIntegerField(choices=CATEGORY_LIST, default=1, verbose_name='类型', help_text='类型')
-    subunits_project = models.ForeignKey(SubUnitProject, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项项目', help_text='子项项目')
+    subunit_project = models.ForeignKey(SubUnitProject, null=True, blank=True, on_delete=models.CASCADE, verbose_name='子项项目', help_text='子项项目')
     product_line = models.ForeignKey(ProductLine, on_delete=models.CASCADE, verbose_name='产品系列', help_text='产品系列')
 
     component_version = models.OneToOneField(ComponentVersion, null=True, blank=True, on_delete=models.CASCADE, verbose_name='组项版本', help_text='组项版本')
@@ -82,6 +79,25 @@ class LogComponentProject(models.Model):
         verbose_name = 'PROJECT-组项目-日志'
         verbose_name_plural = verbose_name
         db_table = 'project_component_logging'
+
+    def __str__(self):
+        return str(self.id)
+
+
+class CPFiles(models.Model):
+    name = models.CharField(max_length=150, verbose_name='文件名称', help_text='文件名称')
+    suffix = models.CharField(max_length=100, verbose_name='文件类型', help_text='文件类型')
+    url = models.CharField(max_length=250, verbose_name='URL地址', help_text='URL地址')
+    workorder = models.ForeignKey(ComponentProject, on_delete=models.CASCADE, verbose_name='组项项目', help_text='组项项目')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
+    updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')
+    is_delete = models.BooleanField(default=False, verbose_name='删除标记', help_text='删除标记')
+    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name='创建人', help_text='创建人')
+
+    class Meta:
+        verbose_name = 'PROJECT-整机项目-图片'
+        verbose_name_plural = verbose_name
+        db_table = 'project_component_files'
 
     def __str__(self):
         return str(self.id)

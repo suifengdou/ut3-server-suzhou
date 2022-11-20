@@ -7,21 +7,39 @@
 
 import django_filters
 from django.contrib.auth import get_user_model
-from apps.project.initialpartproject.models import OriInitialPartsProject, InitialPartsProject
+from .models import OriInitialPartProject, InitialPartProject, IPPFiles, OIPPFiles
 
-class OriInitialPartsProjectFilter(django_filters.FilterSet):
+class OriInitialPartProjectFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = OriInitialPartsProject
+        model = OriInitialPartProject
         fields = "__all__"
 
 
-class InitialPartsProjectFilter(django_filters.FilterSet):
+class InitialPartProjectFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     created_time = django_filters.DateTimeFromToRangeFilter()
 
     class Meta:
-        model = InitialPartsProject
+        model = InitialPartProject
+        fields = "__all__"
+
+
+class IPPFilesFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    created_time = django_filters.DateTimeFromToRangeFilter()
+
+    class Meta:
+        model = IPPFiles
+        fields = "__all__"
+
+
+class OIPPFilesFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    created_time = django_filters.DateTimeFromToRangeFilter()
+
+    class Meta:
+        model = OIPPFiles
         fields = "__all__"

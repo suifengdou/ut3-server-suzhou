@@ -40,7 +40,7 @@ class InitialParts(models.Model):
     specification = models.CharField(null=True, blank=True, max_length=160, verbose_name='规格', help_text='规格')
     technology = models.CharField(null=True, blank=True, max_length=160, verbose_name='工艺', help_text='工艺')
     material = models.ForeignKey(Material, on_delete=models.CASCADE, null=True, blank=True, verbose_name='原材料', help_text='原材料')
-
+    shrinkage = models.FloatField(null=True, blank=True, verbose_name='成型收缩率', help_text='成型收缩率')
     material_color_number = models.CharField(null=True, blank=True, max_length=60, verbose_name='材料色号', help_text='材料色号')
     weight = models.IntegerField(null=True, blank=True, verbose_name='克重', help_text='克重')
 
@@ -49,7 +49,7 @@ class InitialParts(models.Model):
 
     memo = models.CharField(null=True, blank=True, max_length=160, verbose_name='备注', help_text='备注')
 
-    order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='状态', help_text='工单状态')
+    order_status = models.SmallIntegerField(choices=ORDER_STATUS, default=1, verbose_name='状态', help_text='状态')
 
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', help_text='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间', help_text='更新时间')

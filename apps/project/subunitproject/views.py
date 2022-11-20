@@ -21,12 +21,12 @@ from .models import SubUnitProject, SUPFiles, LogSubUnitProject
 from .serializers import SubUnitProjectSerializer, SUPFilesSerializer
 from .filters import SubUnitProjectFilter, SUPFilesFilter
 from apps.utils.oss.aliyunoss import AliyunOSS
-from apps.utils.geography.tools import PickOutAdress
 from ut3forsuzhou.settings import EXPORT_TOPLIMIT
-from apps.utils.logging.loggings import logging
+from apps.utils.logging.loggings import logging, getlogs, getfiles
 from apps.project.componentproject.models import ComponentProject, LogComponentProject
 from apps.bom.component.models import Component, ComponentVersion
 from apps.bom.productcore.models import ProductCore
+from apps.project.phototypeproject.models import PhototypeProject, PhototypeProjectDetails, LogPhototypeProject, LogPhototypeProjectDetails
 
 
 class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
@@ -111,7 +111,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
                             component_order = Component()
                             component_order.category = c_category.component_category
                             preffix = re.sub("[\(（](.+?)[\)）]", "", str(c_category.component_category.name))
-                            suffix_code = str(obj.unit_project.name.units.code)
+                            suffix_code = str(obj.unit_project.units_version.units.code)
                             preffix_code = str(obj.subunits_version.subunit.code)
                             component_order.name = "%s %s" % (preffix, suffix_code)
                             component_order.code = "%s-%s" % (preffix_code, str(c_category.component_category.code))
@@ -119,6 +119,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
                             try:
                                 component_order.save()
                                 logging(obj, user, LogSubUnitProject, "创建组项：%s" % component_order.name)
+
                             except Exception as e:
                                 data["error"].append("%s 组项创建错误：%s" % (component_order.name, e))
                                 error_tag = 1
@@ -139,10 +140,12 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
                                 continue
                             component_project = ComponentProject()
                             component_project.category = obj.category
-                            component_project.subunits_project = obj
+                            component_project.subunit_project = obj
                             component_project.product_line = obj.product_line
                             component_project.component_version = component_version
                             component_project.component_category = c_category.component_category
+                            component_project.name = component_version.name
+                            component_project.code = component_version.code
                             component_project.creator = user
                             try:
                                 component_project.save()
@@ -178,6 +181,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
     @action(methods=['patch'], detail=False)
     def reject(self, request, *args, **kwargs):
         params = request.data
+        user = request.user
         reject_list = self.get_handle_list(params)
         n = len(reject_list)
         data = {
@@ -188,6 +192,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
         if n:
             for obj in reject_list:
                 obj.mogoods_set.all().delete()
+                logging(obj, user, LogSubUnitProject, "驳回项目")
             reject_list.update(order_status=0)
         else:
             raise serializers.ValidationError("没有可驳回的单据！")
@@ -211,7 +216,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
                 obj.save()
                 logging(obj, user, LogSubUnitProject, "标记确认项目")
         else:
-            raise serializers.ValidationError("没有可驳回的单据！")
+            raise serializers.ValidationError("没有可确认的单据！")
         data["successful"] = n
         return Response(data)
 
@@ -232,7 +237,7 @@ class SubUnitProjectPrepareViewset(viewsets.ModelViewSet):
                 obj.save()
                 logging(obj, user, LogSubUnitProject, "清除标记")
         else:
-            raise serializers.ValidationError("没有可驳回的单据！")
+            raise serializers.ValidationError("没有可清除的单据！")
         data["successful"] = n
         return Response(data)
 
@@ -478,6 +483,95 @@ class SubUnitProjectDevelopViewset(viewsets.ModelViewSet):
         return Response(data)
 
     @action(methods=['patch'], detail=False)
+    def create_phototype(self, request, *args, **kwargs):
+        data = {
+            "successful": 0,
+            "false": 0,
+            "error": []
+        }
+        user = request.user
+        id = request.data.get("id", None)
+        quantity = request.data.get("quantity", None)
+        if not all([id, quantity]):
+            data["error"].append("%s 未提交申请数量" )
+            data["false"] = 1
+            return Response(data)
+        _q_subunit_project = SubUnitProject.objects.filter(id=id, order_status=2)
+        if _q_subunit_project.exists():
+            obj = _q_subunit_project[0]
+        else:
+            data["error"].append("%s 未查询到子项目")
+            data["false"] = 1
+            return Response(data)
+        for component_project in obj.componentproject_set.all():
+            if not component_project.initialpartproject_set.all().exists():
+                data["error"].append("%s 存在空组项" % obj.id)
+                data["false"] = 1
+                obj.mistake_tag = 4
+                obj.save()
+                return Response(data)
+        if obj.oriinitialpartproject_set.all().filter(order_status=1):
+            data["error"].append("%s 存在未递交原初物料" % obj.id)
+            data["false"] = 1
+            obj.mistake_tag = 5
+            obj.save()
+            return Response(data)
+
+        phototype_project_order = PhototypeProject()
+        all_phototype_project = obj.phototypeproject_set.all()
+        phototype_project_order.number = len(all_phototype_project) + 1
+        phototype_project_order.subunit_project = obj
+        _pp_order_fileds = ["product_line", "type"]
+        for _pp_keyword in _pp_order_fileds:
+            setattr(phototype_project_order, _pp_keyword, getattr(obj, _pp_keyword, None))
+        phototype_project_order.code = "%s-P%s" % (obj.code, phototype_project_order.number)
+        phototype_project_order.name = "%s第%s次手板" % (obj.name, phototype_project_order.number)
+        phototype_project_order.creator = user
+        phototype_project_order.quantity = int(quantity)
+        try:
+            phototype_project_order.save()
+            logging(obj, user, LogSubUnitProject, "创建手板项目%s" % phototype_project_order.name)
+            logging(phototype_project_order, user, LogPhototypeProject, "创建")
+        except Exception as e:
+            data["error"].append("%s 创建手板项目失败: %s" % (str(obj.id), e))
+            data["false"] = 1
+            obj.mistake_tag = 6
+            obj.save()
+            return Response(data)
+        _q_initial_parts = obj.initialpartproject_set.all().exclude(order_status=0)
+        __ppd_order_fields = ["name", "file_name", "code", "initial_part", "product_line", "subunit_project",
+                              "component_project", "component_code", "category", "diagram_number",
+                              "specification", "technology", "material", "shrinkage", "material_color_number",
+                              "weight", "is_lacquered", "is_group", "color_number", "group_code", "is_making"]
+        details_error_tag = 0
+        for initial_part in _q_initial_parts:
+            phototype_project_details_order = PhototypeProjectDetails()
+            for _ppd_key_word in __ppd_order_fields:
+                setattr(phototype_project_details_order, _ppd_key_word, getattr(initial_part, _ppd_key_word, None))
+            phototype_project_details_order.phototype_project = phototype_project_order
+            phototype_project_details_order.creator = user
+            phototype_project_details_order.quantity = int(initial_part.quantity) * int(phototype_project_order.quantity)
+            try:
+                phototype_project_details_order.save()
+                logging(obj, user, LogSubUnitProject, "创建手板项目%s" % phototype_project_details_order.name)
+                logging(phototype_project_details_order, user, LogPhototypeProjectDetails, "创建")
+            except Exception as e:
+                data["error"].append("%s 创建手板项目失败: %s" % (str(obj.id), e))
+                details_error_tag = 1
+                break
+        if details_error_tag:
+            data["error"].append("%s 创建手板项目明细失败: %s" % (str(obj.id), e))
+            data["false"] = 1
+            obj.mistake_tag = 7
+            obj.save()
+            return Response(data)
+        data["successful"] = 1
+        obj.mistake_tag = 0
+        obj.save()
+
+        return Response(data)
+
+    @action(methods=['patch'], detail=False)
     def reject(self, request, *args, **kwargs):
         params = request.data
         reject_list = self.get_handle_list(params)
@@ -488,9 +582,7 @@ class SubUnitProjectDevelopViewset(viewsets.ModelViewSet):
             "error": []
         }
         if n:
-            for obj in reject_list:
-                obj.mogoods_set.all().delete()
-            reject_list.update(order_status=0)
+            pass
         else:
             raise serializers.ValidationError("没有可驳回的单据！")
         data["successful"] = n
@@ -602,7 +694,7 @@ class SubUnitProjectViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         if not self.request:
             return SubUnitProject.objects.none()
-        queryset = SubUnitProject.objects.filter(order_status=1).order_by("id")
+        queryset = SubUnitProject.objects.all().order_by("-id")
         return queryset
 
     @action(methods=['patch'], detail=False)
@@ -611,372 +703,27 @@ class SubUnitProjectViewset(viewsets.ModelViewSet):
         request.data.pop("page", None)
         request.data.pop("allSelectTag", None)
         params = request.data
-        params["department"] = user.department
-        params["order_status"] = 1
         f = SubUnitProjectFilter(params)
         serializer = SubUnitProjectSerializer(f.qs[:EXPORT_TOPLIMIT], many=True)
         return Response(serializer.data)
 
-    def get_handle_list(self, params):
-        params.pop("page", None)
-        all_select_tag = params.pop("allSelectTag", None)
-        params["order_status"] = 1
-        department = self.request.user.department
-        params["department"] = department
-        if all_select_tag:
-            handle_list = SubUnitProjectFilter(params).qs
-        else:
-            order_ids = params.pop("ids", None)
-            if order_ids:
-                handle_list = SubUnitProject.objects.filter(id__in=order_ids, order_status=1)
-            else:
-                handle_list = []
-        return handle_list
+    @action(methods=['patch'], detail=False)
+    def get_log_details(self, request, *args, **kwargs):
+        id = request.data.get("id", None)
+        if not id:
+            raise serializers.ValidationError("未找到单据！")
+        instance = SubUnitProject.objects.filter(id=id)[0]
+        ret = getlogs(instance, LogSubUnitProject)
+        return Response(ret)
 
     @action(methods=['patch'], detail=False)
-    def check(self, request, *args, **kwargs):
-        params = request.data
-        check_list = self.get_handle_list(params)
-        n = len(check_list)
-        data = {
-            "successful": 0,
-            "false": 0,
-            "error": []
-        }
-        special_city = ['仙桃市', '天门市', '神农架林区', '潜江市', '济源市', '五家渠市', '图木舒克市', '铁门关市', '石河子市', '阿拉尔市',
-                        '嘉峪关市', '五指山市', '文昌市', '万宁市', '屯昌县', '三亚市', '三沙市', '琼中黎族苗族自治县', '琼海市', '北屯市',
-                        '陵水黎族自治县', '临高县', '乐东黎族自治县', '东方市', '定安县', '儋州市', '澄迈县', '昌江黎族自治县', '保亭黎族苗族自治县',
-                        '白沙黎族自治县', '中山市', '东莞市']
-        express_list = {
-            1: "顺丰",
-            2: "申通",
-            3: "韵达",
-        }
-        if n:
-            for obj in check_list:
-                if not obj.erp_order_id:
-                    _prefix = "MO"
-                    serial_number = str(datetime.date.today()).replace("-", "")
-                    obj.erp_order_id = serial_number + _prefix + str(obj.id)
-                    obj.save()
-                _q_mo_exp_repeat = ManualOrderExport.objects.filter(ori_order=obj)
-                if _q_mo_exp_repeat.exists():
-                    order = _q_mo_exp_repeat[0]
-                    if order.order_status in [0, 1]:
-                        order.order_status = 1
-                        order.buyer_remark = ""
-                        order.cs_memoranda = ""
-                    else:
-                        data["error"].append("%s重复递交" % obj.id)
-                        n -= 1
-                        obj.mistake_tag = 1
-                        obj.save()
-                        continue
-                else:
-                    order = ManualOrderExport()
-                    order.erp_order_id = obj.erp_order_id
-                if obj.order_category in [1, 2]:
-                    if not all([obj.m_sn, obj.broken_part, obj.description]):
-                        data["error"].append("%s售后配件需要补全sn、部件和描述" % obj.id)
-                        n -= 1
-                        obj.mistake_tag = 2
-                        obj.save()
-                        continue
-                if not obj.department:
-                    data["error"].append("%s无部门" % str(obj.id))
-                    n -= 1
-                    obj.mistake_tag = 3
-                    obj.save()
-                    continue
-                if not all([obj.province, obj.city]):
-                    data["error"].append("%s省市不可为空" % obj.id)
-                    n -= 1
-                    obj.mistake_tag = 4
-                    obj.save()
-                    continue
-                if obj.city.name not in special_city and not obj.district:
-                    data["error"].append("%s 区县不可为空" % obj.id)
-                    n -= 1
-                    obj.mistake_tag = 4
-                    obj.save()
-                    continue
-                if not re.match(r"^((0\d{2,3}-\d{7,8})|(1[3456789]\d{9}))$", obj.mobile):
-                    data["error"].append("%s 手机错误" % obj.id)
-                    n -= 1
-                    obj.mistake_tag = 5
-                    obj.save()
-                    continue
-                if not obj.shop:
-                    data["error"].append("%s 无店铺" % obj.id)
-                    n -= 1
-                    obj.mistake_tag = 6
-                    obj.save()
-                    continue
-                if '集运' in str(obj.address):
-                    if obj.process_tag != 3:
-                        data["error"].append("%s地址是集运仓" % obj.id)
-                        n -= 1
-                        obj.mistake_tag = 7
-                        obj.save()
-                        continue
-
-                order.buyer_remark = "%s 的 %s 创建" % (str(obj.department), str(obj.creator))
-                if obj.servicer:
-                    order.buyer_remark = "%s来自%s" % (order.buyer_remark, str(obj.servicer))
-                error_tag = 0
-                export_goods_details = []
-                all_goods_details = obj.mogoods_set.all()
-                if len(all_goods_details) > 1:
-                    order.cs_memoranda = "#"
-                for goods_detail in all_goods_details:
-                    _q_mo_repeat = MOGoods.objects.filter(manual_order__mobile=obj.mobile, goods_id=goods_detail.goods_id).order_by("-create_time")
-                    if len(_q_mo_repeat) > 1:
-                        if obj.process_tag != 3:
-                            delta_date = (obj.create_time - _q_mo_repeat[1].create_time).days
-                            if int(delta_date) < 14:
-                                error_tag = 1
-                                data["error"].append("%s 14天内重复" % obj.id)
-                                n -= 1
-                                obj.mistake_tag = 8
-                                obj.save()
-                                break
-                            else:
-                                error_tag = 1
-                                data["error"].append("%s 14天外重复" % obj.id)
-                                n -= 1
-                                obj.mistake_tag = 9
-                                obj.save()
-                                break
-                    if not export_goods_details:
-                        export_goods_details = [goods_detail.goods_name.name, goods_detail.goods_id, goods_detail.quantity]
-                    goods_info = "+ %sx%s" % (goods_detail.goods_name.name, goods_detail.quantity)
-                    goods_id_info = "+ %s x%s" % (goods_detail.goods_id, goods_detail.quantity)
-                    order.buyer_remark = str(order.buyer_remark) + goods_info
-                    order.cs_memoranda = str(order.cs_memoranda) + goods_id_info
-                if error_tag:
-                    continue
-                export_goods_fields = ["goods_name", "goods_id", "quantity"]
-                for i in range(len(export_goods_details)):
-                    setattr(order, export_goods_fields[i], export_goods_details[i])
-                order_fields = ["shop", "nickname", "receiver", "address", "mobile", "province", "city", "district", "erp_order_id"]
-
-                for field in order_fields:
-                    setattr(order, field, getattr(obj, field, None))
-                order.ori_order = obj
-                if obj.assign_express:
-                    express = express_list.get(obj.assign_express, None)
-                    if express:
-                        order.cs_memoranda = "%s 指定%s" % (order.cs_memoranda, express)
-                try:
-                    order.buyer_remark = "%s%s" % (order.buyer_remark, obj.memo)
-                    order.creator = request.user.username
-                    order.save()
-                except Exception as e:
-                    data["error"].append("%s输出单保存出错: %s" % (obj.id, e))
-                    n -= 1
-                    obj.mistake_tag = 10
-                    obj.save()
-                    continue
-
-                obj.order_status = 2
-                obj.mistake_tag = 0
-                obj.save()
-        else:
-            raise serializers.ValidationError("没有可审核的单据！")
-        data["successful"] = n
-        data["false"] = len(check_list) - n
-        return Response(data)
-
-    @action(methods=['patch'], detail=False)
-    def reject(self, request, *args, **kwargs):
-        params = request.data
-        reject_list = self.get_handle_list(params)
-        n = len(reject_list)
-        data = {
-            "successful": 0,
-            "false": 0,
-            "error": []
-        }
-        if n:
-            for obj in reject_list:
-                obj.mogoods_set.all().delete()
-            reject_list.update(order_status=0)
-        else:
-            raise serializers.ValidationError("没有可驳回的单据！")
-        data["successful"] = n
-        return Response(data)
-
-    @action(methods=['patch'], detail=False)
-    def set_special(self, request, *args, **kwargs):
-        params = request.data
-        set_list = self.get_handle_list(params)
-        n = len(set_list)
-        data = {
-            "successful": 0,
-            "false": 0,
-            "error": []
-        }
-        if n:
-            set_list.update(process_tag=3)
-        else:
-            raise serializers.ValidationError("没有可驳回的单据！")
-        data["successful"] = n
-        return Response(data)
-
-    @action(methods=['patch'], detail=False)
-    def reset_tag(self, request, *args, **kwargs):
-        params = request.data
-        set_list = self.get_handle_list(params)
-        n = len(set_list)
-        data = {
-            "successful": 0,
-            "false": 0,
-            "error": []
-        }
-        if n:
-            set_list.update(process_tag=0)
-        else:
-            raise serializers.ValidationError("没有可驳回的单据！")
-        data["successful"] = n
-        return Response(data)
-
-    @action(methods=['patch'], detail=False)
-    def excel_import(self, request, *args, **kwargs):
-        file = request.FILES.get('file', None)
-        if file:
-            data = self.handle_upload_file(request, file)
-        else:
-            data = {
-                "error": "上传文件未找到！"
-            }
-
-        return Response(data)
-
-    def handle_upload_file(self, request, _file):
-        ALLOWED_EXTENSIONS = ['xls', 'xlsx']
-        INIT_FIELDS_DIC = {
-            '店铺': 'shop',
-            '客户网名': 'nickname',
-            '收件人': 'receiver',
-            '地址': 'address',
-            '手机': 'mobile',
-            '货品编码': 'goods_id',
-            '数量': 'quantity',
-            '单据类型': 'order_category',
-            '机器序列号': 'm_sn',
-            '故障部位': 'broken_part',
-            '故障描述': 'description',
-        }
-
-        report_dic = {"successful": 0, "discard": 0, "false": 0, "repeated": 0, "error": []}
-        if '.' in _file.name and _file.name.rsplit('.')[-1] in ALLOWED_EXTENSIONS:
-            df = pd.read_excel(_file, sheet_name=0, dtype=str)
-
-            FILTER_FIELDS = ["店铺", "客户网名", "收件人", "地址", "手机", "货品编码", "货品名称", "数量", "单据类型",
-                             "机器序列号", "故障部位", "故障描述"]
-
-            try:
-                df = df[FILTER_FIELDS]
-            except Exception as e:
-                report_dic["error"].append("必要字段不全或者错误")
-                return report_dic
-
-            # 获取表头，对表头进行转换成数据库字段名
-            columns_key = df.columns.values.tolist()
-            for i in range(len(columns_key)):
-                if INIT_FIELDS_DIC.get(columns_key[i], None) is not None:
-                    columns_key[i] = INIT_FIELDS_DIC.get(columns_key[i])
-
-            # 验证一下必要的核心字段是否存在
-            _ret_verify_field = ManualOrder.verify_mandatory(columns_key)
-            if _ret_verify_field is not None:
-                return _ret_verify_field
-
-            # 更改一下DataFrame的表名称
-            columns_key_ori = df.columns.values.tolist()
-            ret_columns_key = dict(zip(columns_key_ori, columns_key))
-            df.rename(columns=ret_columns_key, inplace=True)
-
-            # 更改一下DataFrame的表名称
-            num_end = 0
-            step = 300
-            step_num = int(len(df) / step) + 2
-            i = 1
-            while i < step_num:
-                num_start = num_end
-                num_end = step * i
-                intermediate_df = df.iloc[num_start: num_end]
-
-                # 获取导入表格的字典，每一行一个字典。这个字典最后显示是个list
-                _ret_list = intermediate_df.to_dict(orient='records')
-                intermediate_report_dic = self.save_resources(request, _ret_list)
-                for k, v in intermediate_report_dic.items():
-                    if k == "error":
-                        if intermediate_report_dic["error"]:
-                            report_dic[k].append(v)
-                    else:
-                        report_dic[k] += v
-                i += 1
-            return report_dic
-
-        else:
-            report_dic["error"].append('只支持excel文件格式！')
-            return report_dic
-
-    @staticmethod
-    def save_resources(request, resource):
-        # 设置初始报告
-        category_dic = {
-            '质量问题': 1,
-            '开箱即损': 2,
-            '礼品赠品': 3
-        }
-        report_dic = {"successful": 0, "discard": 0, "false": 0, "repeated": 0, "error":[]}
-        for row in resource:
-
-            order_fields = ["nickname", "receiver", "address", "mobile", "m_sn", "broken_part", "description"]
-            order = ManualOrder()
-            for field in order_fields:
-                setattr(order, field, row[field])
-            order.order_category = category_dic.get(row["order_category"], None)
-            _q_shop =  Shop.objects.filter(name=row["shop"])
-            if _q_shop.exists():
-                order.shop = _q_shop[0]
-
-            _spilt_addr = PickOutAdress(str(order.address))
-            _rt_addr = _spilt_addr.pickout_addr()
-            if not isinstance(_rt_addr, dict):
-                report_dic["error"].append("%s 地址无法提取省市区" % order.address)
-                report_dic["false"] += 1
-                continue
-            cs_info_fields = ["province", "city", "district", "address"]
-            for key_word in cs_info_fields:
-                setattr(order, key_word, _rt_addr.get(key_word, None))
-
-            try:
-                order.creator = request.user.username
-                order.save()
-                report_dic["successful"] += 1
-            except Exception as e:
-                report_dic['error'].append("%s 保存出错" % row["nickname"])
-                report_dic["false"] += 1
-            goods_details = MOGoods()
-            goods_details.manual_order = order
-            goods_details.quantity = row["quantity"]
-            _q_goods = Goods.objects.filter(goods_id=row["goods_id"])
-            if _q_goods.exists():
-                goods_details.goods_name = _q_goods[0]
-                goods_details.goods_id = row["goods_id"]
-            else:
-                report_dic["error"].append("%s UT无此货品" % row["goods_id"])
-                report_dic["false"] += 1
-                continue
-            try:
-                goods_details.creator = request.user.username
-                goods_details.save()
-            except Exception as e:
-                report_dic['error'].append("%s 保存明细出错" % row["nickname"])
-        return report_dic
+    def get_file_details(self, request, *args, **kwargs):
+        id = request.data.get("id", None)
+        if not id:
+            raise serializers.ValidationError("未找到单据！")
+        instance = SubUnitProject.objects.filter(id=id)[0]
+        ret = getfiles(instance, SUPFiles)
+        return Response(ret)
 
 
 class SUPFilesViewset(viewsets.ModelViewSet):
@@ -1024,7 +771,7 @@ class SUPFilesViewset(viewsets.ModelViewSet):
                 photo_order.is_delete = 1
                 photo_order.save()
                 data["successful"] += 1
-                logging(photo_order.workorder, user, LogSubUnitProject, "删除图片：%s" % photo_order.name)
+                logging(photo_order.workorder, user, LogSubUnitProject, "删除文档：%s" % photo_order.name)
             else:
                 data["false"] += 1
                 data["error"].append("只有创建者才有删除权限")

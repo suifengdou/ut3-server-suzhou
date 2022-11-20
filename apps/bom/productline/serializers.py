@@ -142,13 +142,19 @@ class ProductLineSerializer(serializers.ModelSerializer):
         self.check_component_details(component_details)
 
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
+        component_category_list = []
         for component_detail in component_details:
             component_detail['product_line'] = instance
+            component_category_list.append(component_detail["component_category"])
             component_category = ComponentCategory.objects.filter(id=component_detail["component_category"])[0]
             component_detail["component_category"] = component_category
             component_detail.pop("xh")
             if component_detail["id"] == 'n':
                 component_detail["creator"] = user
             self.create_component_detail(component_detail)
+        component_category_now = ProductCore.objects.filter(product_line=instance)
+        for check_detail in component_category_now:
+            if check_detail.component_category.id not in component_category_list:
+                check_detail.delete()
         return instance
 
